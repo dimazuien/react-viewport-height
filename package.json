@@ -1,0 +1,32 @@
+{
+  "name": "react-viewport-height",
+  "version": "1.0.0",
+  "description": "A utility for React to set 100vh equal to the actual browser inner window height.",
+  "main": "dist/index.js",
+  "module": "dist/index.es.js",
+  "types": "dist/index.d.ts",
+  "typings": "dist/index.d.ts",
+  "sideEffects": false,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dimazuien/react-viewport-height.git"
+  },
+  "files": [
+    "dist/"
+  ],
+  "keywords": [
+    "react",
+    "viewport",
+    "scroll",
+    "vh",
+    "resize",
+    "window",
+    "screen"
+  ],
+  "author": "Dima Zuien",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/dimazuien/react-viewport-height/issues"
+  },
+  "homepage": "https://github.com/dimazuien/react-viewport-height#readme"
+}
