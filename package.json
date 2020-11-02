@@ -2,18 +2,11 @@
   "name": "react-viewport-height",
   "version": "1.0.0",
   "description": "A utility for React to set 100vh equal to the actual browser inner window height.",
-  "main": "dist/index.js",
-  "module": "dist/index.es.js",
-  "types": "dist/index.d.ts",
-  "typings": "dist/index.d.ts",
-  "sideEffects": false,
   "repository": {
     "type": "git",
     "url": "git+https://github.com/dimazuien/react-viewport-height.git"
   },
-  "files": [
-    "dist/"
-  ],
+  "homepage": "https://github.com/dimazuien/react-viewport-height#readme",
   "keywords": [
     "react",
     "viewport",
@@ -21,12 +14,69 @@
     "vh",
     "resize",
     "window",
-    "screen"
+    "screen",
+    "mobile"
   ],
   "author": "Dima Zuien",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/dimazuien/react-viewport-height/issues"
   },
-  "homepage": "https://github.com/dimazuien/react-viewport-height#readme"
+  "source": "src/index.ts",
+  "main": "dist/index.js",
+  "module": "dist/index.module.js",
+  "unpkg": "dist/index.umd.js",
+  "types": "dist/index.d.ts",
+  "typings": "dist/index.d.ts",
+  "files": [
+    "dist/"
+  ],
+  "sideEffects": false,
+  "scripts": {
+    "lint": "eslint './src/**/*.{js,jsx,ts,tsx}'",
+    "build": "microbundle --jsx",
+    "prepublish": "run-s lint build",
+    "release": "np"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": [
+      "eslint --ext .js,.jsx,.ts,.tsx",
+      "prettier --write",
+      "git add"
+    ]
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@types/react": "^16.9.55",
+    "@types/react-dom": "^16.9.9",
+    "@types/react-router-dom": "^5.1.6",
+    "@typescript-eslint/eslint-plugin": "^4.6.0",
+    "@typescript-eslint/parser": "^4.6.0",
+    "eslint": "^7.12.1",
+    "eslint-config-airbnb": "^18.2.0",
+    "eslint-config-prettier": "^6.15.0",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-jsx-a11y": "^6.4.1",
+    "eslint-plugin-prettier": "^3.1.4",
+    "eslint-plugin-react": "^7.21.5",
+    "eslint-plugin-react-hooks": "^4.2.0",
+    "husky": "^4.3.0",
+    "lint-staged": "^10.5.0",
+    "microbundle": "^0.12.4",
+    "np": "^7.0.0",
+    "npm-run-all": "^4.1.5",
+    "prettier": "^2.1.2",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "typescript": "^4.0.5"
+  },
+  "peerDependencies": {
+    "react": "^16.8 || ^17",
+    "react-dom": "^16.8 || ^17"
+  }
 }
