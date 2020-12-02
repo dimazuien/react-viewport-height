@@ -1,6 +1,6 @@
 {
   "extends": [
-    "config:base"
-  ],
-  "semanticCommits": "enabled"
+    "config:base",
+    ":semanticCommits"
+  ]
 }
