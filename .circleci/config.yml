@@ -35,3 +35,4 @@ workflows:
   lint:
     jobs:
       - lint
+      - lint2
