@@ -2,31 +2,26 @@ version: 2.1
 orbs:
   node: circleci/node@4.1.0
 commands:
-   prepare:
-      description: "Check out to a project folder and in"
-      steps:
-        - checkout
-        - restore_cache:
-            name: Restore node modules cache
-            key: node_modules-{{ checksum "package-lock.json" }}
-        - run:
-            name: Install dependencies
-            command: |
-              if [ ! -d node_modules ]; then
-                npm ci
-              fi
-        - save_cache:
-            name: Save node modules cache
-            key: node_modules-{{ checksum "package-lock.json" }}
-            paths:
-              - node_modules
+  prepare:
+    description: 'Check out to a project folder and install/restore packages'
+    steps:
+      - checkout
+      - restore_cache:
+          name: Restore node modules cache
+          key: node_modules-{{ checksum "package-lock.json" }}
+      - run:
+          name: Install dependencies
+          command: |
+            if [ ! -d node_modules ]; then
+              npm ci
+            fi
+      - save_cache:
+          name: Save node modules cache
+          key: node_modules-{{ checksum "package-lock.json" }}
+          paths:
+            - node_modules
 jobs:
   lint:
-    executor: node/default
-    steps:
-      - prepare
-      - run: npm run lint
-  lint2:
     executor: node/default
     steps:
       - prepare
@@ -35,6 +30,3 @@ workflows:
   lint:
     jobs:
       - lint
-      - lint2:
-          requires:
-            - lint
