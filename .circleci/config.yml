@@ -1,13 +1,17 @@
+version: 2.1
+orbs:
+  node: circleci/node@4.1.0
+commands:
+   setup:
+      steps:
+        - checkout
+        - run: npm ci
 jobs:
   lint:
     executor: node/default
     steps:
-      - checkout
-      - run: npm ci
+      - setup
       - run: npm run lint
-version: 2.1
-orbs:
-  node: circleci/node@4.1.0
 workflows:
   lint:
     jobs:
