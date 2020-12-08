@@ -1,9 +1,11 @@
 jobs:
   lint:
-    executor: node/default
+    executor:
+      name: node/default
+      tag: '12.13'
     steps:
       - checkout
-      - run: npm ci
+      - node/install
       - run: npm run lint
 version: 2.1
 orbs:
