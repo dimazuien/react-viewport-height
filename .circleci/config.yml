@@ -5,7 +5,7 @@ jobs:
       tag: '12.13'
     steps:
       - checkout
-      - node/install
+      - node/install-packages
       - run: npm run lint
 version: 2.1
 orbs:
