@@ -1,13 +1,9 @@
 jobs:
-  install:
-    executor: node/default
-    steps:
-      - checkout
-      - run: npm ci
   lint:
     executor: node/default
     steps:
       - checkout
+      - run: npm ci
       - run: npm run lint
 version: 2.1
 orbs:
@@ -15,7 +11,4 @@ orbs:
 workflows:
   lint:
     jobs:
-      - install
-      - lint:
-          requires:
-            - install
+      - lint
