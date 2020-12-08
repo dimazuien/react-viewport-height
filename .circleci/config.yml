@@ -3,7 +3,7 @@ jobs:
     executor: node/default
     steps:
       - checkout
-      - node/install
+      - run: npm ci
       - run: npm run lint
 version: 2.1
 orbs:
