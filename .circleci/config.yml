@@ -1,8 +1,6 @@
 jobs:
   lint:
-    executor:
-      name: node/default
-      tag: '12.13'
+    executor: node/default
     steps:
       - checkout
       - node/install-packages
