@@ -35,6 +35,6 @@ workflows:
   lint:
     jobs:
       - lint
-      - lint2
+      - lint2:
         requires:
           - lint
