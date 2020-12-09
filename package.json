@@ -4,7 +4,7 @@
   "description": "A utility for React to set 100vh equal to the actual browser inner window height.",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/dimazuien/react-viewport-height.git"
+    "url": "https://github.com/dimazuien/react-viewport-height.git"
   },
   "homepage": "https://github.com/dimazuien/react-viewport-height#readme",
   "keywords": [
@@ -35,8 +35,7 @@
   "scripts": {
     "lint": "eslint './src/**/*.{js,jsx,ts,tsx}'",
     "build": "microbundle --jsx",
-    "prepublish": "run-s lint build",
-    "release": "np"
+    "prepublish": "run-s lint build"
   },
   "husky": {
     "hooks": {
@@ -68,7 +67,6 @@
     "husky": "4.3.5",
     "lint-staged": "10.5.3",
     "microbundle": "0.12.4",
-    "np": "7.0.0",
     "npm-run-all": "4.1.5",
     "prettier": "2.2.1",
     "react": "17.0.1",
