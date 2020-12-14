@@ -34,10 +34,9 @@ jobs:
     steps:
       - prepare
       - run:
-          name: Define environment variable with latest commit's message
+          name: Lint commit messages
           command: |
-            echo 'export COMMIT_MESSAGE=$(git log -1 --pretty=format:"%s")' >> $BASH_ENV
-            source $BASH_ENV
+            /bin/sh /.circle-ci/lint-commits.sh
       - run:
           name: Lint commit message
           command: echo "$COMMIT_MESSAGE" | npx commitlint
