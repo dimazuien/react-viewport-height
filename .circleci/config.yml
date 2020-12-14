@@ -26,7 +26,9 @@ jobs:
     executor: node/default
     steps:
       - prepare
-      - run: npm run lint
+      - run:
+          name: Lint code
+          command: npm run lint
   lint-commit-message:
     executor: node/default
     steps:
