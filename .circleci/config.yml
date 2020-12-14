@@ -1,6 +1,7 @@
 version: 2.1
 orbs:
   node: circleci/node@4.1.0
+
 commands:
   prepare:
     description: 'Check out to a project folder and install/restore packages'
@@ -21,12 +22,26 @@ commands:
           paths:
             - node_modules
 jobs:
-  lint:
+  lint-code:
     executor: node/default
     steps:
       - prepare
       - run: npm run lint
+  lint-commit-message:
+    executor: node/default
+    steps:
+      - prepare
+      - run:
+          name: Define environment variable with latest commit's message
+          command: |
+            echo 'export COMMIT_MESSAGE=$(git log -1 --pretty=format:"%s")' >> $BASH_ENV
+            source $BASH_ENV
+      - run:
+          name: Lint commit message
+          command: echo "$COMMIT_MESSAGE" | npx commitlint
+
 workflows:
-  lint:
+  commit:
     jobs:
-      - lint
+      - lint-code
+      - lint-commit-message
