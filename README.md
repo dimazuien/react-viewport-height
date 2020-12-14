@@ -24,7 +24,7 @@ npm install react-viewport-height
 Use the hook somewhere in the app.
 
 ```jsx
-import useVH from "react-viewport-height";
+import useVH from 'react-viewport-height';
 
 const App = () => {
   useVH();
