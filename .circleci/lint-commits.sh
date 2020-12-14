@@ -39,4 +39,4 @@ else
   fi
 fi
 echo "${COMMIT_RANGE}"
-git log ${COMMIT_RANGE} --pretty=%B | commitlint
+git log ${COMMIT_RANGE} --pretty=%B | npx commitlint
