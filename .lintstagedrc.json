@@ -1,0 +1,7 @@
+{
+  "*.{js,jsx,ts,tsx}": [
+    "eslint --ext .js,.jsx,.ts,.tsx",
+    "prettier --write",
+    "git add"
+  ]
+}

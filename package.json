@@ -39,18 +39,6 @@
     "build": "microbundle --jsx",
     "prepublish": "run-s lint build"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
-  "lint-staged": {
-    "*.{js,jsx,ts,tsx}": [
-      "eslint --ext .js,.jsx,.ts,.tsx",
-      "prettier --write",
-      "git add"
-    ]
-  },
   "dependencies": {},
   "devDependencies": {
     "@types/react": "17.0.0",
