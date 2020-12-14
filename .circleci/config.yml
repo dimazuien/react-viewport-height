@@ -37,9 +37,6 @@ jobs:
           name: Lint commit messages
           command: |
             /bin/sh .circleci/lint-commits.sh
-      - run:
-          name: Lint commit message
-          command: echo "$COMMIT_MESSAGE" | npx commitlint
 
 workflows:
   commit:
