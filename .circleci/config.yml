@@ -36,7 +36,7 @@ jobs:
       - run:
           name: Lint commit messages
           command: |
-            /bin/sh .circleci/lint-commits.sh
+            npx commitlint --from << pipeline.git.base_revision >> --to << pipeline.git.revision >>
 
 workflows:
   commit:
