@@ -40,8 +40,7 @@
   "sideEffects": false,
   "scripts": {
     "lint": "eslint './src/**/*.{js,jsx,ts,tsx}'",
-    "build": "microbundle --jsx",
-    "prepublish": "run-s lint build"
+    "build": "microbundle --jsx"
   },
   "dependencies": {},
   "devDependencies": {
