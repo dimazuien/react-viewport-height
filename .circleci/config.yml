@@ -1,3 +1,8 @@
+main_only: &main_only
+  filters:
+    branches:
+      only: main
+
 version: 2.1
 orbs:
   node: circleci/node@4.1.0
@@ -51,18 +56,12 @@ jobs:
 workflows:
   release:
     jobs:
-      - lint-code
-        filters:
-          branches:
-            only: main
-      - lint-commit-message
-        filters:
-          branches:
-            only: main
-      - release
-        filters:
-          branches:
-            only: main
+      - lint-code:
+        <<: *main_only
+      - lint-commit-message:
+        <<: *main_only
+      - release:
+        <<: *main_only
         requires:
           - lint-code
           - lint-commit-message
