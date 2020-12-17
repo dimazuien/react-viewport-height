@@ -1,4 +1,5 @@
 version: 2.1
+
 orbs:
   node: circleci/node@4.1.0
 
@@ -36,10 +37,27 @@ jobs:
       - run:
           name: Lint commit messages
           command: |
-            npx commitlint --from << pipeline.git.base_revision >> --to << pipeline.git.revision >>
+            npx commitlint --from main --to << pipeline.git.revision >>
+  release:
+    executor: node/default
+    steps:
+      - prepare
+      - run:
+          name: Build package
+          command: npm run build
+      - run:
+          name: Release package
+          command: npx semantic-release
 
 workflows:
-  commit:
+  release:
     jobs:
       - lint-code
       - lint-commit-message
+      - release:
+          filters:
+            branches:
+              only: main
+          requires:
+            - lint-code
+            - lint-commit-message
