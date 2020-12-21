@@ -1,42 +1,42 @@
-import { useEffect } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
 const VARIABLE_NAME = '--vh';
 
-const calculateVH = () =>
+const getActualVh = () =>
   // window check for server-side rendering
-  typeof window !== 'undefined' ? window.innerHeight * 0.01 : 0;
+  typeof window !== 'undefined'
+    ? Number((window.innerHeight * 0.01).toFixed(2))
+    : 0;
 
-const isVHSet = () =>
-  getComputedStyle(document.documentElement).getPropertyValue(VARIABLE_NAME) !==
-  '';
-
-const setVH = () => {
-  document.documentElement.style.setProperty(
-    VARIABLE_NAME,
-    `${calculateVH()}px`,
-  );
-};
-
-const removeVH = () => {
-  document.documentElement.style.removeProperty(VARIABLE_NAME);
-};
+let count = 0;
 
 const useVH = (): number => {
+  const [vh, setVh] = useState(getActualVh());
+  const updateVh = useCallback(() => {
+    const newVh = getActualVh();
+
+    document.documentElement.style.setProperty(VARIABLE_NAME, `${newVh}px`);
+    setVh(newVh);
+  }, [setVh]);
+
   useEffect(() => {
-    if (isVHSet()) return () => undefined;
+    count += 1;
 
-    setVH();
+    updateVh();
 
-    window.addEventListener('resize', setVH);
+    window.addEventListener('resize', updateVh);
 
     return () => {
-      window.removeEventListener('resize', setVH);
+      window.removeEventListener('resize', updateVh);
 
-      removeVH();
+      count -= 1;
+
+      if (count === 0)
+        document.documentElement.style.removeProperty(VARIABLE_NAME);
     };
-  }, []);
+  }, [updateVh]);
 
-  return calculateVH();
+  return vh;
 };
 
 export default useVH;
