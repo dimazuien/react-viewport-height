@@ -1,5 +1,6 @@
 {
   "*.{js,jsx,ts,tsx}": [
+    "jest --bail --findRelatedTests",
     "eslint --ext .js,.jsx,.ts,.tsx",
     "prettier --write",
     "git add"
