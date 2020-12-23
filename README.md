@@ -16,7 +16,11 @@ Since `vh` has troubles on mobile browsers (primarily because of the address bar
 ## Installation
 
 ```shell
+# npm
 npm install react-viewport-height
+
+# yarn
+yarn add react-viewport-height
 ```
 
 ## Usage
