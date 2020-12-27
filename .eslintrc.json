@@ -54,7 +54,7 @@
     ],
     "import/no-extraneous-dependencies": [
       "error",
-      { "devDependencies": ["tests/**/*"] }
+      { "devDependencies": ["tests/**/*", "stories/**/*"] }
     ],
     "max-len": [
       "warn",

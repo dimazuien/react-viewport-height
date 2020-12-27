@@ -41,10 +41,12 @@
   "scripts": {
     "lint": "eslint './src/**/*.{js,jsx,ts,tsx}'",
     "test": "jest",
-    "build": "microbundle --jsx"
+    "build": "microbundle --jsx",
+    "storybook": "start-storybook -p 6006"
   },
   "dependencies": {},
   "devDependencies": {
+    "@babel/core": "7.12.10",
     "@commitlint/cli": "11.0.0",
     "@commitlint/config-conventional": "11.0.0",
     "@semantic-release/changelog": "5.0.1",
@@ -53,6 +55,8 @@
     "@semantic-release/github": "7.2.0",
     "@semantic-release/npm": "7.0.9",
     "@semantic-release/release-notes-generator": "9.0.1",
+    "@storybook/addon-docs": "6.1.11",
+    "@storybook/react": "6.1.11",
     "@testing-library/jest-dom": "5.11.6",
     "@testing-library/react": "11.2.2",
     "@testing-library/user-event": "12.6.0",
@@ -63,6 +67,7 @@
     "@types/testing-library__jest-dom": "5.9.5",
     "@typescript-eslint/eslint-plugin": "4.11.0",
     "@typescript-eslint/parser": "4.11.0",
+    "babel-loader": "8.2.2",
     "commitizen": "4.2.2",
     "cz-conventional-changelog": "3.3.0",
     "eslint": "7.16.0",

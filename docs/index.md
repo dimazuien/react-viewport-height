@@ -18,7 +18,7 @@ This package works only in versions of React that support hooks.
 
 ## Usage
 
-`useVH`, a hook that you import from a package, adds a css custom property `--vh` with value of 1% of `window.innerHeight` and returns it from the hook. If the window is resized, the hook updates `--vh` and `vh`.
+`useVH`, a hook that you import from a package, adds a CSS custom property `--vh` with the value of 1% of `window.innerHeight` and returns it from the hook. If the window is resized, the hook updates `--vh` and `vh`.
 
 There are 2 ways of setting an element's height. You can set it in css:
 
@@ -41,7 +41,7 @@ const App = () => {
 }
 ```
 
-Otherwise you can set height in a component directly:
+Otherwise, you can set height in a component directly:
 
 ```jsx
 import useVH from 'react-viewport-height';
