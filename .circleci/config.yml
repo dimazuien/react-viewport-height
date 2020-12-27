@@ -44,6 +44,21 @@ refs:
       run:
         name: Release a new version of the package
         command: yarn release
+    - &Build_Storybook
+      run:
+        name: Build Storybook
+        command: yarn storybook:build
+    - &Commit_Status_Storybook
+      run:
+        name: Post commit status for Storybook
+        command: |
+          npx cross-ci :run curl -H "'Authorization: token \${GITHUB_TOKEN}' -H 'Accept: application/vnd.github.v3+json'" \
+          "'https://api.github.com/repos/\${PROJECT_OWNER}/\${PROJECT_NAME}/statuses/$CIRCLE_SHA1'" -X POST \
+          -d "'{\"state\": \"success\", \"context\": \"Storybook\", \"description\": \"\${BUILD_VERSION}\", \"target_url\": \"https://$CIRCLE_BUILD_NUM-154950925-gh.circle-artifacts.com/0/root/repo/storybook-static/index.html\"}'"
+    - &Upload_Storybook
+      run:
+        name: Upload Storybook
+        command: yarn storybook:upload
 
 jobs:
   all:
@@ -57,6 +72,18 @@ jobs:
       - *Test
       - *Lint
       - *LintCommits
+      - *Build_Storybook
+      - store_artifacts:
+          path: ~/repo/storybook-static
+      - *Commit_Status_Storybook
+      - run:
+          name: Setup GitHub
+          command: |
+            git config --global user.email "dimazuien@gmail.com"
+            git config --global user.name "dimazuien"
+            git remote rm origin
+            git remote add origin https://${GITHUB_TOKEN}@github.com/dimazuien/react-viewport-height
+      - *Upload_Storybook
 
   main:
     <<: *container
@@ -71,6 +98,18 @@ jobs:
       - *LintCommits
       - *Build
       - *Release
+      - *Build_Storybook
+      - store_artifacts:
+          path: ~/repo/storybook-static
+      - *Commit_Status_Storybook
+      - run:
+          name: Setup GitHub
+          command: |
+            git config --global user.email "dimazuien@gmail.com"
+            git config --global user.name "dimazuien"
+            git remote rm origin
+            git remote add origin https://${GITHUB_TOKEN}@github.com/dimazuien/react-viewport-height
+      - *Upload_Storybook
 
 workflows:
   all:
