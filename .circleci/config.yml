@@ -15,18 +15,15 @@ commands:
       - checkout
       - restore_cache:
           name: Restore node modules cache
-          key: node_modules-{{ checksum "package-lock.json" }}
+          key: yarn-packages-{{ checksum "yarn.lock" }}
       - run:
           name: Install dependencies
-          command: |
-            if [ ! -d node_modules ]; then
-              npm ci
-            fi
+          command: yarn install --immutable
       - save_cache:
           name: Save node modules cache
-          key: node_modules-{{ checksum "package-lock.json" }}
+          key: yarn-packages-{{ checksum "yarn.lock" }}
           paths:
-            - node_modules
+            - ~/.cache/yarn
 jobs:
   lint-code:
     <<: *container
@@ -35,7 +32,7 @@ jobs:
       - prepare
       - run:
           name: Lint code
-          command: npm run lint
+          command: yarn run lint
   lint-commit-message:
     <<: *container
     executor: node/default
@@ -52,7 +49,7 @@ jobs:
       - prepare
       - run:
           name: Build package
-          command: npm run build
+          command: yarn run build
       - run:
           name: Release package
           command: npx semantic-release
