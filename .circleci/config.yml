@@ -72,18 +72,6 @@ jobs:
       - *Test
       - *Lint
       - *LintCommits
-      - *Build_Storybook
-      - store_artifacts:
-          path: ~/repo/storybook-static
-      - *Commit_Status_Storybook
-      - run:
-          name: Setup GitHub
-          command: |
-            git config --global user.email "dimazuien@gmail.com"
-            git config --global user.name "dimazuien"
-            git remote rm origin
-            git remote add origin https://${GH_TOKEN}@github.com/dimazuien/react-viewport-height
-      - *Upload_Storybook
 
   main:
     <<: *container
