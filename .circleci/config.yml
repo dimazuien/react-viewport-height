@@ -81,7 +81,6 @@ jobs:
           command: |
             git config --global user.email "dimazuien@gmail.com"
             git config --global user.name "dimazuien"
-            git remote rm origin
             git remote add origin https://${GH_TOKEN}@github.com/dimazuien/react-viewport-height
       - *Upload_Storybook
 
