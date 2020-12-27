@@ -42,6 +42,7 @@
     "lint": "eslint './src/**/*.{js,jsx,ts,tsx}'",
     "test": "jest",
     "build": "microbundle --jsx React.createElement",
+    "release": "semantic-release",
     "storybook": "start-storybook -p 6006",
     "storybook:build": "build-storybook",
     "storybook:upload": "gh-pages -d storybook-static --git \"$(which git)\""
