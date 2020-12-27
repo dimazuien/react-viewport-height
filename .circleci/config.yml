@@ -3,6 +3,11 @@ version: 2.1
 orbs:
   node: circleci/node@4.1.0
 
+refs:
+  container: &container
+    docker:
+      - image: node:12.20.0
+
 commands:
   prepare:
     description: 'Check out to a project folder and install/restore packages'
@@ -24,6 +29,7 @@ commands:
             - node_modules
 jobs:
   lint-code:
+    <<: *container
     executor: node/default
     steps:
       - prepare
@@ -31,6 +37,7 @@ jobs:
           name: Lint code
           command: npm run lint
   lint-commit-message:
+    <<: *container
     executor: node/default
     steps:
       - prepare
@@ -39,6 +46,7 @@ jobs:
           command: |
             npx commitlint --from main --to << pipeline.git.revision >>
   release:
+    <<: *container
     executor: node/default
     steps:
       - prepare
