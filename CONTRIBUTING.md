@@ -34,8 +34,8 @@ Thanks for being willing to contribute, we really appreciate this.
 
 ## Committing and Pushing changes
 
-This repo uses [semantic-release](https://github.com/semantic-release/semantic-release) and [conventional commit messages](https://conventionalcommits.org) so prefix your commits with `fix:` or `feat:` if you want your changes to appear in [release notes](https://github.com/streamich/react-use/blob/main/CHANGELOG.md).
+This repo uses [semantic-release](https://github.com/semantic-release/semantic-release) and [conventional commit messages](https://conventionalcommits.org) so prefix your commits with `fix:` or `feat:` if you want your changes to appear in [release notes](https://github.com/dimazuien/react-viewport-height/blob/main/CHANGELOG.md).
 
 ## Help needed
 
-Another way of helping us is to have a look at the [open issues](https://github.com/streamich/react-use/issues) and respond to questions, bug reports and feature requests.
+Another way of helping us is to have a look at the [open issues](https://github.com/dimazuien/react-viewport-height/issues) and respond to questions, bug reports and feature requests.
