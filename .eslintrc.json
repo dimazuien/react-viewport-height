@@ -52,6 +52,10 @@
         "tsx": "never"
       }
     ],
+    "import/no-extraneous-dependencies": [
+      "error",
+      { "devDependencies": ["tests/**/*"] }
+    ],
     "max-len": [
       "warn",
       {
