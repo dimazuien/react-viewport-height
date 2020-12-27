@@ -30,7 +30,7 @@ jobs:
       - name: Install dependencies and build
         run: |
           yarn install --immutable
-          yarn run build
+          yarn build
 
       - name: Perform CodeQL Analysis
         uses: github/codeql-action/analyze@v1
