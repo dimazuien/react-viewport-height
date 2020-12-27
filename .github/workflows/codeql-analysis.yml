@@ -22,6 +22,18 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
+      - name: Setup NodeJS
+        uses: actions/setup-node@v1
+        with:
+          node-version: '12.20.0'
+
+      - name: Restore node dependency cache
+        id: cache-dependencies
+        uses: actions/cache@v1
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-node-dep-v2-${{ hashFiles('**/yarn.lock') }}
+
       - name: Initialize CodeQL
         uses: github/codeql-action/init@v1
         with:
@@ -29,8 +41,8 @@ jobs:
 
       - name: Install dependencies and build
         run: |
-          npm ci
-          npm run build
+          yarn install --immutable
+          yarn build
 
       - name: Perform CodeQL Analysis
         uses: github/codeql-action/analyze@v1

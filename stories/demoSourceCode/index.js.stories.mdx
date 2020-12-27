@@ -1,0 +1,26 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Demo Source Code/index.js" />
+
+```jsx
+import React from 'react';
+import useVH from 'react-viewport-height';
+import './index.css';
+
+const Demo = () => {
+  useVH();
+
+  return (
+    <div className="container">
+      <div className="vh">vh</div>
+      <div className="--vh">
+        --vh
+        <br />* to see the difference watch this demo on a mobile browser in a full
+        screen mode
+      </div>
+    </div>
+  );
+};
+
+export default Demo;
+```

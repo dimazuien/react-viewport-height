@@ -1,63 +1,116 @@
 version: 2.1
 
-orbs:
-  node: circleci/node@4.1.0
+refs:
+  container: &container
+    docker:
+      - image: node:12.20.0
+  steps:
+    - &Versions
+      run:
+        name: Display versions
+        command: node -v && npm -v && yarn -v
+    - &CacheRestore
+      restore_cache:
+        name: Restore node modules cache
+        key: yarn-packages-{{ checksum "yarn.lock" }}
+    - &Install
+      run:
+        name: Install dependencies
+        command: yarn install --immutable
+    - &CacheSave
+      save_cache:
+        name: Save node modules cache
+        key: yarn-packages-{{ checksum "yarn.lock" }}
+        paths:
+          - ~/.cache/yarn
+    - &Build
+      run:
+        name: Build the package
+        command: yarn build
+    - &Lint
+      run:
+        name: Lint code
+        command: yarn lint
+    - &LintCommits
+      run:
+        name: Lint commit messages
+        command: |
+          npx commitlint --from main --to << pipeline.git.revision >>
+    - &Test
+      run:
+        name: Test the package
+        command: yarn test
+    - &Release
+      run:
+        name: Release a new version of the package
+        command: yarn release
+    - &Build_Storybook
+      run:
+        name: Build Storybook
+        command: yarn storybook:build
+    - &Commit_Status_Storybook
+      run:
+        name: Post commit status for Storybook
+        command: |
+          npx cross-ci :run curl -H "'Authorization: token \${GH_TOKEN}' -H 'Accept: application/vnd.github.v3+json'" \
+          "'https://api.github.com/repos/\${PROJECT_OWNER}/\${PROJECT_NAME}/statuses/$CIRCLE_SHA1'" -X POST \
+          -d "'{\"state\": \"success\", \"context\": \"Storybook\", \"description\": \"\${BUILD_VERSION}\", \"target_url\": \"https://$CIRCLE_BUILD_NUM-154950925-gh.circle-artifacts.com/0/root/repo/storybook-static/index.html\"}'"
+    - &Upload_Storybook
+      run:
+        name: Upload Storybook
+        command: yarn storybook:upload
 
-commands:
-  prepare:
-    description: 'Check out to a project folder and install/restore packages'
+jobs:
+  all:
+    <<: *container
     steps:
       - checkout
-      - restore_cache:
-          name: Restore node modules cache
-          key: node_modules-{{ checksum "package-lock.json" }}
+      - *Versions
+      - *CacheRestore
+      - *Install
+      - *CacheSave
+      - *Test
+      - *Lint
+      - *LintCommits
+
+  main:
+    <<: *container
+    steps:
+      - checkout
+      - *Versions
+      - *CacheRestore
+      - *Install
+      - *CacheSave
+      - *Test
+      - *Lint
+      - *LintCommits
+      - *Build
+      - *Release
+      - *Build_Storybook
+      - store_artifacts:
+          path: ~/repo/storybook-static
+      - *Commit_Status_Storybook
       - run:
-          name: Install dependencies
+          name: Setup GitHub
           command: |
-            if [ ! -d node_modules ]; then
-              npm ci
-            fi
-      - save_cache:
-          name: Save node modules cache
-          key: node_modules-{{ checksum "package-lock.json" }}
-          paths:
-            - node_modules
-jobs:
-  lint-code:
-    executor: node/default
-    steps:
-      - prepare
-      - run:
-          name: Lint code
-          command: npm run lint
-  lint-commit-message:
-    executor: node/default
-    steps:
-      - prepare
-      - run:
-          name: Lint commit messages
-          command: |
-            npx commitlint --from main --to << pipeline.git.revision >>
-  release:
-    executor: node/default
-    steps:
-      - prepare
-      - run:
-          name: Build package
-          command: npm run build
-      - run:
-          name: Release package
-          command: npx semantic-release
+            git config --global user.email "dimazuien@gmail.com"
+            git config --global user.name "dimazuien"
+            git remote rm origin
+            git remote add origin https://${GH_TOKEN}@github.com/dimazuien/react-viewport-height
+      - *Upload_Storybook
 
 workflows:
-  release:
+  all:
     jobs:
-      - lint-code
-      - lint-commit-message
-      - release:
+      - all:
+          filters:
+            branches:
+              ignore:
+                - main
+                - gh-pages
+  main:
+    jobs:
+      - main:
           filters:
             branches:
               only: main
-          requires:
-            - lint-code
-            - lint-commit-message

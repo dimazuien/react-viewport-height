@@ -8,42 +8,38 @@
 [![GitHub Stars](https://img.shields.io/github/stars/dimazuien/react-viewport-height)](https://github.com/dimazuien/react-viewport-height/stargazers)
 ![CircleCI status](https://img.shields.io/circleci/build/github/dimazuien/react-viewport-height/main?label=circleci)
 ![Code scanning](https://img.shields.io/github/workflow/status/dimazuien/react-viewport-height/CodeQL?label=code%20scanning)
+[![Storybook](https://img.shields.io/badge/demos-%F0%9F%9A%80-yellow.svg?label=storybook)](https://dimazuien.github.io/react-viewport-height)
 
 A utility for React to set 100vh equal to the actual browser inner window height.
 
 Since `vh` has troubles on mobile browsers (primarily because of the address bar), there are several tricks to fix it. This package implements the one from [this article](https://css-tricks.com/the-trick-to-viewport-units-on-mobile/).
 
-## Installation
+## Usage
 
 ```shell
 npm install react-viewport-height
 ```
 
-## Usage
-
-Use the hook somewhere in the app.
-
 ```jsx
+// index.js
 import useVH from 'react-viewport-height';
+import './index.css';
 
 const App = () => {
   useVH();
 
-  return <App />;
+  return <div className="app" />;
 };
 ```
 
-And then you can use `--vh` variable in your css.
-
 ```css
-/* fallback for browsers that don't support CSS custom properties */
+/* index.css */
 .app {
-  min-height: 100vh;
   min-height: calc(var(--vh, 1vh) * 100);
 }
 ```
 
-This package works only in versions of React that support hooks.
+Read [the documentation](https://github.com/dimazuien/react-viewport-height/blob/main/docs/index.md) for more details. You can also play with a [demo](https://codesandbox.io/s/react-viewport-height-90o4j).
 
 ## Support
 
