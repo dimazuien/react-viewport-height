@@ -1,3 +1,10 @@
+## [1.1.2](https://github.com/dimazuien/react-viewport-height/compare/v1.1.1...v1.1.2) (2021-02-22)
+
+
+### Bug Fixes
+
+* fix typing paths ([9d20410](https://github.com/dimazuien/react-viewport-height/commit/9d204101a9dd1b2d57858db965838dcd971d019c)), closes [#73](https://github.com/dimazuien/react-viewport-height/issues/73)
+
 ## [1.1.1](https://github.com/dimazuien/react-viewport-height/compare/v1.1.0...v1.1.1) (2021-02-22)
 
 
