@@ -35,9 +35,9 @@
   "types": "index.d.ts",
   "typings": "index.d.ts",
   "files": [
-    "dist/",
-    "useVH.d.ts",
-    "index.d.ts"
+    "dist",
+    "index.d.ts",
+    "useVH.d.ts"
   ],
   "sideEffects": false,
   "scripts": {

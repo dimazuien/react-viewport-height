@@ -1,8 +1,10 @@
 # dependencies
-/node_modules
+node_modules
 
 # builds
-/dist
-/storybook-static
+dist
+storybook-static
+
+# typings
 index.d.ts
 useVH.d.ts
