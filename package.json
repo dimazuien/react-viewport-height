@@ -32,8 +32,8 @@
   "browser": "dist/index.js",
   "module": "dist/index.module.js",
   "unpkg": "dist/index.umd.js",
-  "types": "dist/src/index.d.ts",
-  "typings": "dist/src/index.d.ts",
+  "types": "index.d.ts",
+  "typings": "index.d.ts",
   "files": [
     "dist/"
   ],

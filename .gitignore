@@ -4,3 +4,5 @@
 # builds
 /dist
 /storybook-static
+index.d.ts
+useVH.d.ts
