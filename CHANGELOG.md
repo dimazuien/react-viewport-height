@@ -1,3 +1,10 @@
+## [1.1.3](https://github.com/dimazuien/react-viewport-height/compare/v1.1.2...v1.1.3) (2021-02-22)
+
+
+### Bug Fixes
+
+* include files definitions into package ([eea4d8e](https://github.com/dimazuien/react-viewport-height/commit/eea4d8e353935130c8e3b81397a76edbe0ace328))
+
 ## [1.1.2](https://github.com/dimazuien/react-viewport-height/compare/v1.1.1...v1.1.2) (2021-02-22)
 
 
