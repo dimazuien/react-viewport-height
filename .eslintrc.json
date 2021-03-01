@@ -1,14 +1,12 @@
 {
   "extends": [
+    "prettier",
     "airbnb",
+    "plugin:prettier/recommended",
+    "plugin:@typescript-eslint/recommended",
     "plugin:testing-library/recommended",
     "plugin:testing-library/react",
-    "plugin:jest-dom/recommended",
-    "plugin:@typescript-eslint/recommended",
-    "prettier",
-    "prettier/react",
-    "prettier/@typescript-eslint",
-    "plugin:prettier/recommended"
+    "plugin:jest-dom/recommended"
   ],
   "env": {
     "browser": true,
