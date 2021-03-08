@@ -1,4 +1,5 @@
 {
   "extends": ["config:base", "schedule:earlyMondays"],
+  "ignorePresets": [":prHourlyLimit2"],
   "semanticCommits": "enabled"
 }
