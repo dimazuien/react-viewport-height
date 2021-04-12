@@ -1,7 +1,0 @@
-{
-  "hooks": {
-    "pre-commit": "lint-staged",
-    "prepare-commit-msg": "exec < /dev/tty && cz --hook || true",
-    "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
-  }
-}
