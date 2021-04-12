@@ -1,5 +1,5 @@
 {
-  "extends": ["config:base", "schedule:earlyMondays"],
+  "extends": ["config:base"],
   "ignorePresets": [":prHourlyLimit2"],
   "semanticCommits": "enabled",
   "packageRules": [
