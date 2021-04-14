@@ -107,7 +107,6 @@ workflows:
             branches:
               ignore:
                 - main
-                - gh-pages
   main:
     jobs:
       - main:
