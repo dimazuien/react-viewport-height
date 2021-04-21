@@ -87,8 +87,6 @@ jobs:
       - *Build
       - *Release
       - *Build_Storybook
-      - store_artifacts:
-          path: ~/repo/storybook-static
       - *Commit_Status_Storybook
       - run:
           name: Setup GitHub
