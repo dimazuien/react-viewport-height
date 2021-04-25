@@ -9,7 +9,7 @@ refs:
       run:
         name: Display versions
         command: node -v && npm -v && yarn -v
-    - &CacheRestore
+    - &Cache_Restore
       restore_cache:
         name: Restore node modules cache
         key: yarn-packages-{{ checksum "yarn.lock" }}
@@ -17,7 +17,7 @@ refs:
       run:
         name: Install dependencies
         command: yarn install --immutable
-    - &CacheSave
+    - &Cache_Save
       save_cache:
         name: Save node modules cache
         key: yarn-packages-{{ checksum "yarn.lock" }}
@@ -31,7 +31,7 @@ refs:
       run:
         name: Lint code
         command: yarn lint
-    - &LintCommits
+    - &Lint_Commits
       run:
         name: Lint commit messages
         command: |
@@ -44,18 +44,18 @@ refs:
       run:
         name: Release a new version of the package
         command: yarn release
-    - &Build_Storybook
+    - &Storybook_Build
       run:
         name: Build Storybook
         command: yarn storybook:build
-    - &Commit_Status_Storybook
+    - &Storybook_Status_Commit
       run:
         name: Post commit status for Storybook
         command: |
           npx cross-ci :run curl -H "'Authorization: token \${GH_TOKEN}' -H 'Accept: application/vnd.github.v3+json'" \
           "'https://api.github.com/repos/\${PROJECT_OWNER}/\${PROJECT_NAME}/statuses/$CIRCLE_SHA1'" -X POST \
           -d "'{\"state\": \"success\", \"context\": \"Storybook\", \"description\": \"\${BUILD_VERSION}\", \"target_url\": \"https://$CIRCLE_BUILD_NUM-154950925-gh.circle-artifacts.com/0/root/repo/storybook-static/index.html\"}'"
-    - &Setup_GitHub
+    - &Storybook_GitHub_Setup
       run:
         name: Setup GitHub
         command: |
@@ -63,7 +63,7 @@ refs:
           git config --global user.name "dimazuien"
           git remote rm origin
           git remote add origin https://${GH_TOKEN}@github.com/dimazuien/react-viewport-height
-    - &Upload_Storybook
+    - &Storybook_Upload
       run:
         name: Upload Storybook
         command: yarn storybook:upload
@@ -74,30 +74,30 @@ jobs:
     steps:
       - checkout
       - *Versions
-      - *CacheRestore
+      - *Cache_Restore
       - *Install
-      - *CacheSave
+      - *Cache_Save
       - *Test
       - *Lint
-      - *LintCommits
+      - *Lint_Commits
 
   main:
     <<: *container
     steps:
       - checkout
       - *Versions
-      - *CacheRestore
+      - *Cache_Restore
       - *Install
-      - *CacheSave
+      - *Cache_Save
       - *Test
       - *Lint
-      - *LintCommits
+      - *Lint_Commits
       - *Build
       - *Release
-      - *Build_Storybook
-      - *Commit_Status_Storybook
-      - *Setup_GitHub      
-      - *Upload_Storybook
+      - *Storybook_Build
+      - *Storybook_Status_Commit
+      - *Storybook_GitHub_Setup      
+      - *Storybook_Upload
 
 workflows:
   all:
