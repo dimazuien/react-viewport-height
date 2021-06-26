@@ -1,5 +1,11 @@
 import '@testing-library/jest-dom/extend-expect';
-import { act, fireEvent, render, screen } from '@testing-library/react';
+import {
+  act,
+  fireEvent,
+  render,
+  screen,
+  waitFor,
+} from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import React, { FC, useState } from 'react';
 import useVH from '../src/useVH';
@@ -89,7 +95,7 @@ describe('useVH', () => {
     expect(screen.getByTestId('container3')).toHaveTextContent(newVh);
   });
 
-  it('should remove custom CSS property "--vh" if all components with the hook get unmounted', () => {
+  it('should remove custom CSS property "--vh" if all components with the hook get unmounted', async () => {
     const vh = String(window.innerHeight / 100);
     const Child1: FC = () => {
       useVH();
@@ -133,6 +139,10 @@ describe('useVH', () => {
 
     userEvent.click(screen.getByRole('button', { name: 'Hide child 2' }));
 
-    expect(document.documentElement.style.getPropertyValue('--vh')).toEqual('');
+    await waitFor(() =>
+      expect(document.documentElement.style.getPropertyValue('--vh')).toEqual(
+        '',
+      ),
+    );
   });
 });
