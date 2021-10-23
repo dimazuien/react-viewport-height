@@ -3,7 +3,7 @@ version: 2.1
 refs:
   container: &container
     docker:
-      - image: node:16.12.0
+      - image: node:17.0.1
   steps:
     - &Versions
       run:
