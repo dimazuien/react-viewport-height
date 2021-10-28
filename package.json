@@ -49,7 +49,7 @@
     "release": "semantic-release",
     "postpublish": "pinst --enable",
     "storybook": "start-storybook -p 6006",
-    "storybook:build": "build-storybook",
+    "storybook:build": "export NODE_OPTIONS=--openssl-legacy-provider; build-storybook",
     "storybook:upload": "gh-pages -m 'Updates [ci skip]' -d storybook-static"
   },
   "devDependencies": {
