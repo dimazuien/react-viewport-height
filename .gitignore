@@ -3,7 +3,6 @@ node_modules
 
 # builds
 lib
-storybook-static
 
 # typings
 index.d.ts

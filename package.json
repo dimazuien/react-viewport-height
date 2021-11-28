@@ -43,10 +43,7 @@
     "test": "jest",
     "prepublishOnly": "pinst --disable",
     "release": "semantic-release",
-    "postpublish": "pinst --enable",
-    "storybook": "start-storybook -p 6006",
-    "storybook:build": "export NODE_OPTIONS=--openssl-legacy-provider; build-storybook",
-    "storybook:upload": "gh-pages -m 'Updates [ci skip]' -d storybook-static"
+    "postpublish": "pinst --enable"
   },
   "devDependencies": {
     "@babel/core": "7.16.0",
@@ -61,8 +58,6 @@
     "@semantic-release/github": "8.0.2",
     "@semantic-release/npm": "8.0.3",
     "@semantic-release/release-notes-generator": "10.0.3",
-    "@storybook/addon-docs": "6.4.0",
-    "@storybook/react": "6.4.0",
     "@testing-library/dom": "8.11.1",
     "@testing-library/jest-dom": "5.15.1",
     "@testing-library/react": "12.1.2",

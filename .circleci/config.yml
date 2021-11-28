@@ -48,29 +48,6 @@ refs:
       run:
         name: Release a new version of the package
         command: yarn release
-    - &Storybook_Build
-      run:
-        name: Build Storybook
-        command: yarn storybook:build
-    - &Storybook_Status_Commit
-      run:
-        name: Post commit status for Storybook
-        command: |
-          npx cross-ci :run curl -H "'Authorization: token \${GH_TOKEN}' -H 'Accept: application/vnd.github.v3+json'" \
-          "'https://api.github.com/repos/\${PROJECT_OWNER}/\${PROJECT_NAME}/statuses/$CIRCLE_SHA1'" -X POST \
-          -d "'{\"state\": \"success\", \"context\": \"Storybook\", \"description\": \"\${BUILD_VERSION}\", \"target_url\": \"https://$CIRCLE_BUILD_NUM-154950925-gh.circle-artifacts.com/0/root/repo/storybook-static/index.html\"}'"
-    - &Storybook_GitHub_Setup
-      run:
-        name: Setup GitHub
-        command: |
-          git config --global user.email "dimazuien@gmail.com"
-          git config --global user.name "dimazuien"
-          git remote rm origin
-          git remote add origin https://${GH_TOKEN}@github.com/dimazuien/react-viewport-height
-    - &Storybook_Upload
-      run:
-        name: Upload Storybook
-        command: yarn storybook:upload
 
 jobs:
   all:
@@ -99,10 +76,6 @@ jobs:
       - *Build
       - *Generate_Typings
       - *Release
-      - *Storybook_Build
-      - *Storybook_Status_Commit
-      - *Storybook_GitHub_Setup
-      - *Storybook_Upload
 
 workflows:
   all:
