@@ -15,5 +15,5 @@
     "isolatedModules": false,
     "jsx": "react"
   },
-  "include": ["src", "tests", "stories"]
+  "include": ["src", "tests"]
 }

@@ -16,7 +16,7 @@
   },
   "parserOptions": {
     "parser": "@typescript-eslint/parser",
-    "ecmaVersion": 2019,
+    "ecmaVersion": "latest",
     "sourceType": "module"
   },
   "plugins": [
@@ -24,6 +24,7 @@
     "react-hooks",
     "testing-library",
     "jest-dom",
+    "simple-import-sort",
     "@typescript-eslint",
     "prettier"
   ],
@@ -35,7 +36,6 @@
     }
   },
   "rules": {
-    "jsx-a11y/href-no-hash": ["off"],
     "react/jsx-filename-extension": [
       "warn",
       {
@@ -52,7 +52,7 @@
     ],
     "import/no-extraneous-dependencies": [
       "error",
-      { "devDependencies": ["tests/**/*", "stories/**/*"] }
+      { "devDependencies": ["tests/**/*"] }
     ],
     "max-len": [
       "warn",
@@ -68,9 +68,14 @@
         "ignoreRegExpLiterals": true
       }
     ],
-    "react/prop-types": "off",
-    "no-use-before-define": "off",
-    "@typescript-eslint/no-use-before-define": "error",
+    "simple-import-sort/imports": "warn",
+    "simple-import-sort/exports": "warn",
+    "import/no-useless-path-segments": [
+      "error",
+      {
+        "noUselessIndex": true
+      }
+    ],
     "react/function-component-definition": [
       2,
       {

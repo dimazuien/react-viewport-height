@@ -9,5 +9,8 @@
     "postpublish",
     "testid",
     "zuien"
-  ]
+  ],
+  "editor.codeActionsOnSave": {
+    "source.organizeImports": false
+  }
 }

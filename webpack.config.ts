@@ -1,4 +1,5 @@
 import path from 'path';
+
 import { peerDependencies } from './package.json';
 
 const config = {

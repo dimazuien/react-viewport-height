@@ -1,4 +1,5 @@
 import '@testing-library/jest-dom/extend-expect';
+
 import {
   act,
   fireEvent,
@@ -8,6 +9,7 @@ import {
 } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import React, { useState } from 'react';
+
 import useVH from '../src/useVH';
 
 describe('useVH', () => {
