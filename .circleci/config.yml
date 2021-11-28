@@ -27,6 +27,10 @@ refs:
       run:
         name: Build the package
         command: yarn build
+    - &Generate_Typings
+      run:
+        name: Generate d.ts file
+        command: yarn dts
     - &Lint
       run:
         name: Lint code
@@ -93,10 +97,11 @@ jobs:
       - *Lint
       - *Lint_Commits
       - *Build
+      - *Generate_Typings
       - *Release
       - *Storybook_Build
       - *Storybook_Status_Commit
-      - *Storybook_GitHub_Setup      
+      - *Storybook_GitHub_Setup
       - *Storybook_Upload
 
 workflows:

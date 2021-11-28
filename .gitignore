@@ -2,7 +2,7 @@
 node_modules
 
 # builds
-dist
+lib
 storybook-static
 
 # typings

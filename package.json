@@ -28,21 +28,17 @@
     "url": "https://github.com/dimazuien/react-viewport-height/issues"
   },
   "source": "src/index.ts",
-  "main": "dist/index.js",
-  "browser": "dist/index.js",
-  "module": "dist/index.module.js",
-  "unpkg": "dist/index.umd.js",
-  "types": "index.d.ts",
+  "main": "lib/index.js",
   "typings": "index.d.ts",
   "files": [
-    "dist",
-    "index.d.ts",
-    "useVH.d.ts"
+    "lib",
+    "index.d.ts"
   ],
   "sideEffects": false,
   "scripts": {
     "postinstall": "husky install",
-    "build": "microbundle --jsx React.createElement",
+    "build": "webpack",
+    "dts": "npx npm-dts generate -e src/index",
     "lint": "eslint './src/**/*.{js,jsx,ts,tsx}'",
     "test": "jest",
     "prepublishOnly": "pinst --disable",
@@ -54,6 +50,9 @@
   },
   "devDependencies": {
     "@babel/core": "7.16.0",
+    "@babel/preset-env": "7.16.4",
+    "@babel/preset-react": "7.16.0",
+    "@babel/preset-typescript": "7.16.0",
     "@commitlint/cli": "15.0.0",
     "@commitlint/config-conventional": "15.0.0",
     "@semantic-release/changelog": "6.0.1",
@@ -92,7 +91,7 @@
     "husky": "7.0.4",
     "jest": "27.3.1",
     "lint-staged": "12.1.2",
-    "microbundle": "0.14.2",
+    "npm-dts": "1.3.10",
     "pinst": "2.1.6",
     "prettier": "2.5.0",
     "react": "17.0.2",
@@ -100,10 +99,13 @@
     "semantic-release": "18.0.1",
     "ts-jest": "27.0.7",
     "ts-node": "10.4.0",
-    "typescript": "4.5.2"
+    "typescript": "4.5.2",
+    "webpack": "5.64.4",
+    "webpack-cli": "4.9.1"
   },
   "peerDependencies": {
     "react": "^16.8 || ^17",
     "react-dom": "^16.8 || ^17"
-  }
+  },
+  "dependencies": {}
 }
