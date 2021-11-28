@@ -7,17 +7,17 @@ import {
   waitFor,
 } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import React, { FC, useState } from 'react';
+import React, { useState } from 'react';
 import useVH from '../src/useVH';
 
 describe('useVH', () => {
   it('should set custom CSS property "--vh" that equals to one hundredth of inner height', () => {
     const vh = String(window.innerHeight / 100);
-    const App: FC = () => {
+    function App() {
       useVH();
 
       return <div>Hello, world</div>;
-    };
+    }
 
     render(<App />);
 
@@ -28,11 +28,11 @@ describe('useVH', () => {
 
   it('should return "vh" value', () => {
     const vh = String(window.innerHeight / 100);
-    const App: FC = () => {
+    function App() {
       const appVh = useVH();
 
       return <div>{appVh}</div>;
-    };
+    }
 
     const { baseElement } = render(<App />);
 
@@ -42,19 +42,19 @@ describe('useVH', () => {
   it('should update "vh" value if a window is resized', () => {
     const newHeight = 500;
     const newVh = String(newHeight / 100);
-    const App: FC = () => {
+    function App() {
       const vh = useVH();
 
       return <div data-testid="container">{vh}</div>;
-    };
+    }
 
     render(<App />);
 
     act(() => {
       Object.assign(window, { innerHeight: newHeight });
-
-      fireEvent(window, new Event('resize'));
     });
+
+    fireEvent(window, new Event('resize'));
 
     expect(document.documentElement.style.getPropertyValue('--vh')).toEqual(
       `${newVh}px`,
@@ -65,7 +65,7 @@ describe('useVH', () => {
   it('should work with multiple instances', () => {
     const newHeight = 500;
     const newVh = String(newHeight / 100);
-    const App: FC = () => {
+    function App() {
       const vh1 = useVH();
       const vh2 = useVH();
       const vh3 = useVH();
@@ -77,15 +77,15 @@ describe('useVH', () => {
           <div data-testid="container3">{vh3}</div>
         </>
       );
-    };
+    }
 
     render(<App />);
 
     act(() => {
       Object.assign(window, { innerHeight: newHeight });
-
-      fireEvent(window, new Event('resize'));
     });
+
+    fireEvent(window, new Event('resize'));
 
     expect(document.documentElement.style.getPropertyValue('--vh')).toEqual(
       `${newVh}px`,
@@ -97,17 +97,17 @@ describe('useVH', () => {
 
   it('should remove custom CSS property "--vh" if all components with the hook get unmounted', async () => {
     const vh = String(window.innerHeight / 100);
-    const Child1: FC = () => {
+    function Child1() {
       useVH();
 
       return <div>Hello, world 1!</div>;
-    };
-    const Child2: FC = () => {
+    }
+    function Child2() {
       useVH();
 
       return <div>Hello, world 3!</div>;
-    };
-    const App: FC = () => {
+    }
+    function App() {
       const [child1Shown, setChild1Shown] = useState(true);
       const [child2Shown, setChild2Shown] = useState(true);
 
@@ -123,7 +123,7 @@ describe('useVH', () => {
           {child2Shown && <Child2 />}
         </>
       );
-    };
+    }
 
     render(<App />);
 
