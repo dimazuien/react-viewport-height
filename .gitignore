@@ -2,8 +2,7 @@
 node_modules
 
 # builds
-dist
-storybook-static
+lib
 
 # typings
 index.d.ts

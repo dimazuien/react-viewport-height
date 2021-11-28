@@ -1,1 +1,3 @@
-export { default } from './useVH';
+import useVH from './useVH';
+
+export default useVH;

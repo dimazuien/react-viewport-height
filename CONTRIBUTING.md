@@ -30,7 +30,6 @@ Thanks for being willing to contribute, we really appreciate this.
 1. Add new code or modify existing one in `src` folder. If you added new module, don't forget to add an export in `src/index.ts`
 1. Add or/and modify tests in `tests` folder
 1. Update documentation in `docs` folder
-1. If necessary, update demo in `stories` folder
 
 ## Committing and Pushing changes
 

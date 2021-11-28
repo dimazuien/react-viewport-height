@@ -8,7 +8,6 @@
 [![GitHub Stars](https://img.shields.io/github/stars/dimazuien/react-viewport-height)](https://github.com/dimazuien/react-viewport-height/stargazers)
 ![CircleCI status](https://img.shields.io/circleci/build/github/dimazuien/react-viewport-height/main?label=circleci)
 ![Code scanning](https://img.shields.io/github/workflow/status/dimazuien/react-viewport-height/CodeQL?label=code%20scanning)
-[![Storybook](https://img.shields.io/badge/demos-%F0%9F%9A%80-yellow.svg?label=storybook)](https://dimazuien.github.io/react-viewport-height)
 
 A utility for React to set 100vh equal to the actual browser inner window height.
 

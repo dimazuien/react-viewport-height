@@ -1,7 +1,7 @@
 {
   "*.{js,jsx,ts,tsx}": [
     "jest --bail --findRelatedTests",
-    "eslint --ext .js,.jsx,.ts,.tsx",
-    "prettier --write"
-  ]
+    "eslint --max-warnings=0 --fix"
+  ],
+  "*.{js,jsx,ts,tsx,json,css,md}": ["prettier --write"]
 }

@@ -26,4 +26,3 @@ Delete tasks if they are not applicable. -->
 
 - [ ] Have tests been added/updated?
 - [ ] Have docs been added/updated?
-- [ ] Have stories been added/updated?
