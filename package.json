@@ -85,7 +85,7 @@
     "eslint-plugin-testing-library": "5.0.1",
     "gh-pages": "3.2.3",
     "husky": "7.0.4",
-    "jest": "27.4.3",
+    "jest": "27.4.4",
     "lint-staged": "12.1.2",
     "npm-dts": "1.3.10",
     "pinst": "2.1.6",
