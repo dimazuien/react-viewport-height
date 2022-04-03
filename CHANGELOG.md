@@ -1,3 +1,15 @@
+# [1.2.0](https://github.com/dimazuien/react-viewport-height/compare/v1.1.3...v1.2.0) (2022-04-03)
+
+
+### Bug Fixes
+
+* replace useEffect with useLayoutEffect ([c9fd013](https://github.com/dimazuien/react-viewport-height/commit/c9fd013f64963070ea90faaa5afdd9d9efb1552a))
+
+
+### Features
+
+* add support for react 18 ([ce48cbc](https://github.com/dimazuien/react-viewport-height/commit/ce48cbc10959b42b21aa421f3ea6a4ba2104d70c))
+
 ## [1.1.3](https://github.com/dimazuien/react-viewport-height/compare/v1.1.2...v1.1.3) (2021-02-22)
 
 
