@@ -1,4 +1,8 @@
 #!/bin/sh
 . "$(dirname "$0")/_/husky.sh"
 
+if [ -n "$CI" ]; then
+  exit 0
+fi
+
 exec < /dev/tty && node_modules/.bin/cz --hook || true
