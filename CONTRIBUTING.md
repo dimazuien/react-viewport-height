@@ -37,4 +37,4 @@ This repo uses [semantic-release](https://github.com/semantic-release/semantic-r
 
 ## Help needed
 
-Another way of helping us is to have a look at the [open issues](https://github.com/dimazuien/react-viewport-height/issues) and respond to questions, bug reports and feature requests.
+Another way of helping the project is to have a look at the [open issues](https://github.com/dimazuien/react-router-scroll-to-top/issues) and respond to questions, bug reports and feature requests.

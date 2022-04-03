@@ -42,4 +42,4 @@ Read [the documentation](https://github.com/dimazuien/react-viewport-height/blob
 
 ## Support
 
-If you like this package and want to support it, you can fund us on [Patreon](https://www.patreon.com/dimazuien)
+If you like this package and want to support it, you can do it on [Patreon](https://www.patreon.com/dimazuien)
