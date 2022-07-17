@@ -1,3 +1,10 @@
+## [1.2.1](https://github.com/dimazuien/react-viewport-height/compare/v1.2.0...v1.2.1) (2022-07-17)
+
+
+### Bug Fixes
+
+* validating server side properly and removing layoutEffect to not get a NextJS warning ([91b8021](https://github.com/dimazuien/react-viewport-height/commit/91b802190ba9e25eb50d916680a8c769da5a3c12))
+
 # [1.2.0](https://github.com/dimazuien/react-viewport-height/compare/v1.1.3...v1.2.0) (2022-04-03)
 
 
