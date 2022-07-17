@@ -1,17 +1,13 @@
-import { useCallback, useLayoutEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
 const VARIABLE_NAME = '--vh';
 
-const getActualVh = () =>
-  // window check for server-side rendering
-  typeof window !== 'undefined'
-    ? Number((window.innerHeight * 0.01).toFixed(2))
-    : 0;
+const getActualVh = () => Number((window.innerHeight * 0.01).toFixed(2));
 
 let count = 0;
 
 const useVH = (): number => {
-  const [vh, setVh] = useState(getActualVh());
+  const [vh, setVh] = useState(0);
   const updateVh = useCallback(() => {
     const newVh = getActualVh();
 
@@ -19,20 +15,22 @@ const useVH = (): number => {
     setVh(newVh);
   }, [setVh]);
 
-  useLayoutEffect(() => {
-    count += 1;
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      count += 1;
 
-    updateVh();
+      updateVh();
 
-    window.addEventListener('resize', updateVh);
-
+      window.addEventListener('resize', updateVh);
+    }
     return () => {
       window.removeEventListener('resize', updateVh);
 
       count -= 1;
 
-      if (count === 0)
+      if (count === 0) {
         document.documentElement.style.removeProperty(VARIABLE_NAME);
+      }
     };
   }, [updateVh]);
 
