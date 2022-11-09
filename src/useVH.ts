@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useLayoutEffect, useState } from 'react';
 
 const VARIABLE_NAME = '--vh';
 
@@ -15,7 +15,7 @@ const useVH = (): number => {
     setVh(newVh);
   }, [setVh]);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (typeof window !== 'undefined') {
       count += 1;
 
