@@ -58,7 +58,7 @@
     "@semantic-release/github": "9.0.3",
     "@semantic-release/npm": "10.0.4",
     "@semantic-release/release-notes-generator": "11.0.3",
-    "@testing-library/dom": "9.3.0",
+    "@testing-library/dom": "9.3.1",
     "@testing-library/jest-dom": "5.16.5",
     "@testing-library/react": "14.0.0",
     "@testing-library/user-event": "14.4.3",
