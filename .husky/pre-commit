@@ -5,4 +5,4 @@ if [ -n "$CI" ]; then
   exit 0
 fi
 
-yarn lint-staged
+npx lint-staged

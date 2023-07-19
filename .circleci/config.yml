@@ -1,40 +1,29 @@
 version: 2.1
 
+orbs:
+  node: circleci/node@5.1.0
+
 refs:
   container: &container
     docker:
-      - image: node:20.4.0
+      - image: cimg/base:current
   steps:
-    - &Versions
-      run:
-        name: Display versions
-        command: node -v && npm -v && yarn -v
-    - &Cache_Restore
-      restore_cache:
-        name: Restore node modules cache
-        key: yarn-packages-{{ checksum "yarn.lock" }}
     - &Install
       run:
         name: Install dependencies
-        command: yarn install --immutable
-    - &Cache_Save
-      save_cache:
-        name: Save node modules cache
-        key: yarn-packages-{{ checksum "yarn.lock" }}
-        paths:
-          - ~/.cache/yarn
+        command: npm ci
     - &Build
       run:
         name: Build the package
-        command: yarn build
+        command: npm run build
     - &Generate_Typings
       run:
         name: Generate d.ts file
-        command: yarn dts
+        command: npm run dts
     - &Lint
       run:
         name: Lint code
-        command: yarn lint
+        command: npm run lint
     - &Lint_Commits
       run:
         name: Lint commit messages
@@ -43,21 +32,19 @@ refs:
     - &Test
       run:
         name: Test the package
-        command: yarn test
+        command: npm test
     - &Release
       run:
         name: Release a new version of the package
-        command: yarn release
+        command: npm run release
 
 jobs:
   all:
     <<: *container
     steps:
       - checkout
-      - *Versions
-      - *Cache_Restore
+      - node/install
       - *Install
-      - *Cache_Save
       - *Test
       - *Lint
       - *Lint_Commits
@@ -66,10 +53,8 @@ jobs:
     <<: *container
     steps:
       - checkout
-      - *Versions
-      - *Cache_Restore
+      - node/install
       - *Install
-      - *Cache_Save
       - *Test
       - *Lint
       - *Lint_Commits

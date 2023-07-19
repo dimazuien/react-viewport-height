@@ -6,7 +6,7 @@ on:
   pull_request:
     branches: [main]
   schedule:
-    - cron: '43 17 * * 4'
+    - cron: '0 0 * * 0'
 
 jobs:
   analyze:
@@ -25,14 +25,7 @@ jobs:
       - name: Setup NodeJS
         uses: actions/setup-node@v3
         with:
-          node-version: '20.0.0'
-
-      - name: Restore node dependency cache
-        id: cache-dependencies
-        uses: actions/cache@v3
-        with:
-          path: node_modules
-          key: ${{ runner.os }}-node-dep-v2-${{ hashFiles('**/yarn.lock') }}
+          node-version-file: '.nvmrc'
 
       - name: Initialize CodeQL
         uses: github/codeql-action/init@v2
@@ -41,8 +34,8 @@ jobs:
 
       - name: Install dependencies and build
         run: |
-          yarn install --immutable
-          yarn build
+          npm ci
+          npm run build
 
       - name: Perform CodeQL Analysis
         uses: github/codeql-action/analyze@v2

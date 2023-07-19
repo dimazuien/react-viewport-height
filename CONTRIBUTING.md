@@ -7,7 +7,7 @@ Thanks for being willing to contribute, we really appreciate this.
 ## Project setup
 
 1. Fork and clone the repo
-1. Run `yarn install` to install dependencies
+1. Run `npm ci` to install dependencies
 1. Create a branch for your PR with `git checkout -b pr/your-branch-name`
 
 > Tip: Keep your `main` branch pointing at the original repository and make
