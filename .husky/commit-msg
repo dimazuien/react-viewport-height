@@ -5,4 +5,4 @@ if [ -n "$CI" ]; then
   exit 0
 fi
 
-yarn commitlint --edit $1
+npx commitlint --edit $1
