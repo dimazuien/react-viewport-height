@@ -10,7 +10,7 @@ import {
 import userEvent from '@testing-library/user-event';
 import React, { useState } from 'react';
 
-import useVH from '../src/useVH';
+import useVH from '.';
 
 describe('useVH', () => {
   it('should set custom CSS property "--vh" that equals to one hundredth of inner height', () => {
@@ -115,10 +115,20 @@ describe('useVH', () => {
 
       return (
         <>
-          <button type="button" onClick={() => setChild1Shown(false)}>
+          <button
+            type="button"
+            onClick={() => {
+              setChild1Shown(false);
+            }}
+          >
             Hide child 1
           </button>
-          <button type="button" onClick={() => setChild2Shown(false)}>
+          <button
+            type="button"
+            onClick={() => {
+              setChild2Shown(false);
+            }}
+          >
             Hide child 2
           </button>
           {child1Shown && <Child1 />}
@@ -133,18 +143,18 @@ describe('useVH', () => {
       `${vh}px`,
     );
 
-    userEvent.click(screen.getByRole('button', { name: 'Hide child 1' }));
+    await userEvent.click(screen.getByRole('button', { name: 'Hide child 1' }));
 
     expect(document.documentElement.style.getPropertyValue('--vh')).toEqual(
       `${vh}px`,
     );
 
-    userEvent.click(screen.getByRole('button', { name: 'Hide child 2' }));
+    await userEvent.click(screen.getByRole('button', { name: 'Hide child 2' }));
 
-    await waitFor(() =>
+    await waitFor(() => {
       expect(document.documentElement.style.getPropertyValue('--vh')).toEqual(
         '',
-      ),
-    );
+      );
+    });
   });
 });
