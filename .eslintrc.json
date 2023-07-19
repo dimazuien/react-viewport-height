@@ -3,7 +3,8 @@
     "prettier",
     "airbnb",
     "plugin:prettier/recommended",
-    "plugin:@typescript-eslint/recommended",
+    "plugin:@typescript-eslint/strict-type-checked",
+    "plugin:@typescript-eslint/stylistic-type-checked",
     "plugin:testing-library/dom",
     "plugin:testing-library/react",
     "plugin:jest-dom/recommended"
@@ -15,6 +16,7 @@
     "node": true
   },
   "parserOptions": {
+    "project": "./tsconfig.eslint.json",
     "parser": "@typescript-eslint/parser",
     "ecmaVersion": "latest",
     "sourceType": "module"
@@ -52,7 +54,7 @@
     ],
     "import/no-extraneous-dependencies": [
       "error",
-      { "devDependencies": ["tests/**/*"] }
+      { "devDependencies": ["**/*.test.{js,jsx,ts,tsx}"] }
     ],
     "max-len": [
       "warn",
