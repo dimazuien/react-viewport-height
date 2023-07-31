@@ -1,3 +1,10 @@
+## [1.2.2](https://github.com/dimazuien/react-viewport-height/compare/v1.2.1...v1.2.2) (2023-07-31)
+
+
+### Bug Fixes
+
+* change webpack config to build nodejs-compatible bundle ([80a4596](https://github.com/dimazuien/react-viewport-height/commit/80a4596054cb73cab978d3f4601fd9cf2b264f19)), closes [#211](https://github.com/dimazuien/react-viewport-height/issues/211)
+
 ## [1.2.1](https://github.com/dimazuien/react-viewport-height/compare/v1.2.0...v1.2.1) (2022-07-17)
 
 
