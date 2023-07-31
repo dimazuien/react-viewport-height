@@ -13,6 +13,8 @@ A utility for React to set 100vh equal to the actual browser inner window height
 
 Since `vh` has troubles on mobile browsers (primarily because of the address bar), there are several tricks to fix it. This package implements the one from [this article](https://css-tricks.com/the-trick-to-viewport-units-on-mobile/).
 
+_The solution for this was introduced in the [CSS Values and Units Module Level 4](https://www.w3.org/TR/css-values-4) which is [widely supported now](https://caniuse.com/viewport-unit-variants). Instead of using this package, you can use the `dvh` unit if your project doesn't need to support older browsers. [Read more about new units.](https://web.dev/viewport-units/)_
+
 ## Usage
 
 ```shell
