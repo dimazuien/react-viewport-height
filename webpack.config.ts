@@ -27,6 +27,7 @@ const config = {
   output: {
     path: path.resolve(__dirname, 'lib'),
     filename: 'index.js',
+    globalObject: 'globalThis',
     library: {
       name: 'react-viewport-height',
       type: 'umd',
