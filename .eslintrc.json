@@ -54,7 +54,7 @@
     ],
     "import/no-extraneous-dependencies": [
       "error",
-      { "devDependencies": ["**/*.test.{js,jsx,ts,tsx}"] }
+      { "devDependencies": ["**/*.test.{js,jsx,ts,tsx}", "src/setupTests.ts"] }
     ],
     "max-len": [
       "warn",
