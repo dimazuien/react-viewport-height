@@ -83,6 +83,10 @@
       {
         "namedComponents": "function-declaration"
       }
+    ],
+    "testing-library/no-await-sync-events": [
+      "error",
+      { "eventModules": ["fire-event"] }
     ]
   }
 }
