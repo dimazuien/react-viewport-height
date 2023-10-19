@@ -1,5 +1,21 @@
 {
-  "extends": "./tsconfig.base.json",
-  "include": ["src"],
-  "exclude": ["**/*.test.js", "**/*.test.jsx", "**/*.test.ts", "**/*.test.tsx"]
+  "compilerOptions": {
+    "rootDir": ".",
+    "target": "es5",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "noFallthroughCasesInSwitch": true,
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": false,
+    "jsx": "react"
+  },
+  "include": ["**/*.js", "**/*.jsx", "**/*.ts", "**/*.tsx"],
+  "exclude": ["node_modules", "lib", "coverage"]
 }

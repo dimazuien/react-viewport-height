@@ -3,11 +3,7 @@
     "prettier",
     "airbnb",
     "plugin:prettier/recommended",
-    "plugin:@typescript-eslint/strict-type-checked",
-    "plugin:@typescript-eslint/stylistic-type-checked",
-    "plugin:testing-library/dom",
-    "plugin:testing-library/react",
-    "plugin:jest-dom/recommended"
+    "plugin:@typescript-eslint/recommended"
   ],
   "env": {
     "browser": true,
@@ -16,7 +12,7 @@
     "node": true
   },
   "parserOptions": {
-    "project": "./tsconfig.eslint.json",
+    "project": "./tsconfig.json",
     "parser": "@typescript-eslint/parser",
     "ecmaVersion": "latest",
     "sourceType": "module"
@@ -24,8 +20,6 @@
   "plugins": [
     "react",
     "react-hooks",
-    "testing-library",
-    "jest-dom",
     "simple-import-sort",
     "@typescript-eslint",
     "prettier"
@@ -83,10 +77,28 @@
       {
         "namedComponents": "function-declaration"
       }
-    ],
-    "testing-library/no-await-sync-events": [
-      "error",
-      { "eventModules": ["fire-event"] }
     ]
-  }
+  },
+  "overrides": [
+    {
+      "files": [
+        "**/*.test.ts",
+        "**/*.test.tsx",
+        "**/*.test.js",
+        "**/*.test.jsx"
+      ],
+      "plugins": ["jest", "testing-library", "jest-dom"],
+      "extends": [
+        "plugin:jest/all",
+        "plugin:testing-library/react",
+        "plugin:jest-dom/recommended"
+      ],
+      "rules": {
+        "jest/prefer-lowercase-title": [
+          "error",
+          { "ignoreTopLevelDescribe": true }
+        ]
+      }
+    }
+  ]
 }

@@ -6,3 +6,6 @@ lib
 
 # typings
 index.d.ts
+
+# tests
+coverage

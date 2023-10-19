@@ -2,67 +2,61 @@ import {
   act,
   fireEvent,
   render,
+  renderHook,
   screen,
-  waitFor,
 } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import React, { useState } from 'react';
 
 import useVH from '.';
 
+const getDocumentVh = () =>
+  document.documentElement.style.getPropertyValue('--vh');
+
 describe('useVH', () => {
-  it('should set custom CSS property "--vh" that equals to one hundredth of inner height', () => {
-    const vh = String(window.innerHeight / 100);
-    function App() {
-      useVH();
+  const user = userEvent.setup();
 
-      return <div>Hello, world</div>;
-    }
+  it('should set custom CSS property "--vh" that equals to one hundredth of the inner window height', () => {
+    expect.assertions(1);
 
-    render(<App />);
+    const vh = window.innerHeight / 100;
 
-    expect(document.documentElement.style.getPropertyValue('--vh')).toEqual(
-      `${vh}px`,
-    );
+    renderHook(useVH);
+
+    expect(getDocumentVh()).toBe(`${vh}px`);
   });
 
   it('should return "vh" value', () => {
-    const vh = String(window.innerHeight / 100);
-    function App() {
-      const appVh = useVH();
+    expect.assertions(1);
 
-      return <div>{appVh}</div>;
-    }
+    const vh = window.innerHeight / 100;
 
-    const { baseElement } = render(<App />);
+    const { result } = renderHook(useVH);
 
-    expect(baseElement).toHaveTextContent(vh);
+    expect(result.current).toBe(vh);
   });
 
   it('should update "vh" value if a window is resized', () => {
+    expect.assertions(2);
+
     const newHeight = 500;
-    const newVh = String(newHeight / 100);
-    function App() {
-      const vh = useVH();
+    const newVh = newHeight / 100;
 
-      return <div data-testid="container">{vh}</div>;
-    }
-
-    render(<App />);
+    const { result } = renderHook(useVH);
 
     act(() => {
-      Object.assign(window, { innerHeight: newHeight });
+      window.innerHeight = newHeight;
     });
 
     fireEvent(window, new Event('resize'));
 
-    expect(document.documentElement.style.getPropertyValue('--vh')).toEqual(
-      `${newVh}px`,
-    );
-    expect(screen.getByTestId('container')).toHaveTextContent(newVh);
+    expect(getDocumentVh()).toBe(`${newVh}px`);
+    expect(result.current).toBe(newVh);
   });
 
   it('should work with multiple instances', () => {
+    expect.assertions(2);
+
     const newHeight = 500;
     const newVh = String(newHeight / 100);
     function App() {
@@ -70,42 +64,64 @@ describe('useVH', () => {
       const vh2 = useVH();
       const vh3 = useVH();
 
+      return `${vh1} ${vh2} ${vh3}`;
+    }
+
+    render(<App />);
+
+    act(() => {
+      window.innerHeight = newHeight;
+    });
+
+    fireEvent(window, new Event('resize'));
+
+    expect(getDocumentVh()).toBe(`${newVh}px`);
+    expect(document.body).toHaveTextContent(`${newVh} ${newVh} ${newVh}`);
+  });
+
+  it('should not remove custom CSS property "--vh" if the component with the hook gets unmounted but there are others mounted', async () => {
+    expect.assertions(1);
+
+    const vh = window.innerHeight / 100;
+    function Child() {
+      useVH();
+
+      return null;
+    }
+    function App() {
+      const [child1Shown, setChild1Shown] = useState(true);
+
       return (
         <>
-          <div data-testid="container1">{vh1}</div>
-          <div data-testid="container2">{vh2}</div>
-          <div data-testid="container3">{vh3}</div>
+          <button
+            type="button"
+            onClick={() => {
+              setChild1Shown(false);
+            }}
+          >
+            Hide child 1
+          </button>
+          {/* eslint-disable-next-line jest/no-conditional-in-test */}
+          {child1Shown && <Child />}
+          <Child />
         </>
       );
     }
 
     render(<App />);
 
-    act(() => {
-      Object.assign(window, { innerHeight: newHeight });
-    });
+    await user.click(screen.getByRole('button'));
 
-    fireEvent(window, new Event('resize'));
-
-    expect(document.documentElement.style.getPropertyValue('--vh')).toEqual(
-      `${newVh}px`,
-    );
-    expect(screen.getByTestId('container1')).toHaveTextContent(newVh);
-    expect(screen.getByTestId('container2')).toHaveTextContent(newVh);
-    expect(screen.getByTestId('container3')).toHaveTextContent(newVh);
+    expect(getDocumentVh()).toBe(`${vh}px`);
   });
 
   it('should remove custom CSS property "--vh" if all components with the hook get unmounted', async () => {
-    const vh = String(window.innerHeight / 100);
-    function Child1() {
+    expect.assertions(1);
+
+    function Child() {
       useVH();
 
-      return <div>Hello, world 1!</div>;
-    }
-    function Child2() {
-      useVH();
-
-      return <div>Hello, world 3!</div>;
+      return null;
     }
     function App() {
       const [child1Shown, setChild1Shown] = useState(true);
@@ -129,30 +145,19 @@ describe('useVH', () => {
           >
             Hide child 2
           </button>
-          {child1Shown && <Child1 />}
-          {child2Shown && <Child2 />}
+          {/* eslint-disable-next-line jest/no-conditional-in-test */}
+          {child1Shown && <Child />}
+          {/* eslint-disable-next-line jest/no-conditional-in-test */}
+          {child2Shown && <Child />}
         </>
       );
     }
 
     render(<App />);
 
-    expect(document.documentElement.style.getPropertyValue('--vh')).toEqual(
-      `${vh}px`,
-    );
+    await user.click(screen.getByRole('button', { name: 'Hide child 1' }));
+    await user.click(screen.getByRole('button', { name: 'Hide child 2' }));
 
-    await userEvent.click(screen.getByRole('button', { name: 'Hide child 1' }));
-
-    expect(document.documentElement.style.getPropertyValue('--vh')).toEqual(
-      `${vh}px`,
-    );
-
-    await userEvent.click(screen.getByRole('button', { name: 'Hide child 2' }));
-
-    await waitFor(() => {
-      expect(document.documentElement.style.getPropertyValue('--vh')).toEqual(
-        '',
-      );
-    });
+    expect(getDocumentVh()).toBe('');
   });
 });
