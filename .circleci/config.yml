@@ -36,6 +36,7 @@ refs:
         environment:
           JEST_JUNIT_OUTPUT_DIR: ./reports/
           JEST_JUNIT_ADD_FILE_ATTRIBUTE: 'true'
+    - &Save_Test_Results
       store_test_results:
         path: ./reports/
     - &Release
@@ -51,6 +52,7 @@ jobs:
       - node/install
       - *Install
       - *Test
+      - *Save_Test_Results
       - *Lint
       - *Lint_Commits
 
@@ -61,6 +63,7 @@ jobs:
       - node/install
       - *Install
       - *Test
+      - *Save_Test_Results
       - *Lint
       - *Lint_Commits
       - *Build
