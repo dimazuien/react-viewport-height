@@ -32,7 +32,12 @@ refs:
     - &Test
       run:
         name: Test the package
-        command: npm test
+        command: npm test -- --ci
+        environment:
+          JEST_JUNIT_OUTPUT_DIR: ./reports/
+          JEST_JUNIT_ADD_FILE_ATTRIBUTE: 'true'
+      store_test_results:
+        path: ./reports/
     - &Release
       run:
         name: Release a new version of the package

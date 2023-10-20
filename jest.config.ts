@@ -13,6 +13,7 @@ const config = {
   },
   coveragePathIgnorePatterns: ['src/index.ts'],
   setupFilesAfterEnv: ['<rootDir>/src/setupTests.ts'],
+  reporters: ['default', 'jest-junit'],
 };
 
 export default config;

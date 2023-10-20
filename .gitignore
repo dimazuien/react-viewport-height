@@ -8,4 +8,5 @@ lib
 index.d.ts
 
 # tests
+junit.xml
 coverage
