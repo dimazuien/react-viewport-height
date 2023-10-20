@@ -32,30 +32,43 @@ refs:
     - &Test
       run:
         name: Test the package
-        command: npm test
+        command: npm test -- --ci --runInBand
+        environment:
+          JEST_JUNIT_OUTPUT_DIR: ./reports/
+          JEST_JUNIT_ADD_FILE_ATTRIBUTE: 'true'
+    - &Save_Test_Results
+      store_test_results:
+        path: reports
+    - &Save_Test_Coverage
+      store_artifacts:
+        path: coverage
     - &Release
       run:
         name: Release a new version of the package
         command: npm run release
 
 jobs:
-  all:
+  check:
     <<: *container
     steps:
       - checkout
       - node/install
       - *Install
       - *Test
+      - *Save_Test_Results
+      - *Save_Test_Coverage
       - *Lint
       - *Lint_Commits
 
-  main:
+  release:
     <<: *container
     steps:
       - checkout
       - node/install
       - *Install
       - *Test
+      - *Save_Test_Results
+      - *Save_Test_Coverage
       - *Lint
       - *Lint_Commits
       - *Build
@@ -65,14 +78,14 @@ jobs:
 workflows:
   all:
     jobs:
-      - all:
+      - check:
           filters:
             branches:
               ignore:
                 - main
   main:
     jobs:
-      - main:
+      - release:
           filters:
             branches:
               only: main
