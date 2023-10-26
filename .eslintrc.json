@@ -2,6 +2,7 @@
   "extends": [
     "prettier",
     "airbnb",
+    "plugin:react/jsx-runtime",
     "plugin:prettier/recommended",
     "plugin:@typescript-eslint/recommended"
   ],
