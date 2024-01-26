@@ -36,7 +36,7 @@
   ],
   "sideEffects": false,
   "scripts": {
-    "postinstall": "husky install",
+    "prepare": "husky",
     "build": "webpack",
     "dts": "npx npm-dts generate -e src/index",
     "lint": "eslint .",
