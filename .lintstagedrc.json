@@ -1,7 +1,8 @@
 {
-  "*.{js,jsx,ts,tsx}": [
-    "jest --bail --findRelatedTests --passWithNoTests",
-    "eslint --max-warnings=0 --fix"
+  "*.{js,jsx,ts,tsx,cjs,mjs,cts,mts}": [
+    "eslint --max-warnings=0 --fix",
+    "prettier --write",
+    "jest --bail --findRelatedTests --passWithNoTests"
   ],
-  "*.{js,jsx,ts,tsx,json,css,md}": ["prettier --write"]
+  "*.{json,jsonc,yml,yaml,md}": ["prettier --write"]
 }
