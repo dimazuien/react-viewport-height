@@ -12,7 +12,58 @@
     "testid",
     "zuien"
   ],
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.codeActionsOnSave": {
-    "source.organizeImports": "never"
+    "source.fixAll.eslint": "explicit"
+  },
+  "eslint.validate": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact"
+  ],
+  "json.schemas": [
+    {
+      "fileMatch": ["/.commitlintrc.json"],
+      "url": "https://json.schemastore.org/commitlintrc.json"
+    },
+    {
+      "fileMatch": ["/.lintstagedrc.json"],
+      "url": "https://json.schemastore.org/lintstagedrc.schema.json"
+    },
+    {
+      "fileMatch": ["/.prettierrc.json"],
+      "url": "https://json.schemastore.org/prettierrc"
+    },
+    {
+      "fileMatch": ["/.releaserc.json"],
+      "url": "https://json.schemastore.org/semantic-release.json"
+    },
+    {
+      "fileMatch": ["/.eslintrc.json"],
+      "url": "https://json.schemastore.org/eslintrc"
+    },
+    {
+      "fileMatch": ["/babel.config.json"],
+      "url": "https://json.schemastore.org/babelrc"
+    },
+    {
+      "fileMatch": ["/renovate.json"],
+      "url": "https://docs.renovatebot.com/renovate-schema.json"
+    }
+  ],
+  "yaml.schemas": {
+    "https://json.schemastore.org/circleciconfig.json": [
+      "/.circleci/config.yml"
+    ],
+    "https://json.schemastore.org/github-funding.json": [
+      "/.github/FUNDING.yml"
+    ],
+    "https://json.schemastore.org/github-issue-forms.json": [
+      "/.github/ISSUE_TEMPLATE/*.yml"
+    ],
+    "https://json.schemastore.org/github-workflow.json": [
+      "/.github/workflows/*.yml"
+    ]
   }
 }
