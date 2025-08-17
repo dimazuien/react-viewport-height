@@ -3,6 +3,7 @@
     "automerge",
     "codeql",
     "commitlint",
+    "conventionalcommits",
     "dima",
     "dimazuien",
     "pinst",
