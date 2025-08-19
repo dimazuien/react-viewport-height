@@ -94,7 +94,7 @@ describe('useVH', () => {
       return (
         <>
           <button
-            type="button"
+            type='button'
             onClick={() => {
               setChild1Shown(false);
             }}
@@ -130,7 +130,7 @@ describe('useVH', () => {
       return (
         <>
           <button
-            type="button"
+            type='button'
             onClick={() => {
               setChild1Shown(false);
             }}
@@ -138,7 +138,7 @@ describe('useVH', () => {
             Hide child 1
           </button>
           <button
-            type="button"
+            type='button'
             onClick={() => {
               setChild2Shown(false);
             }}

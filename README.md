@@ -29,7 +29,7 @@ import './index.css';
 const App = () => {
   useVH();
 
-  return <div className="app" />;
+  return <div className='app' />;
 };
 ```
 
