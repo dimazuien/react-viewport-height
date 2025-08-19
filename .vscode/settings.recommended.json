@@ -12,20 +12,19 @@
     "testid",
     "zuien"
   ],
-  "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": "explicit"
+    "source.fixAll": "explicit"
   },
-  "eslint.validate": [
-    "javascript",
-    "javascriptreact",
-    "typescript",
-    "typescriptreact"
-  ],
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true,
   "json.schemas": [
     {
       "fileMatch": ["/.commitlintrc.json"],
       "url": "https://json.schemastore.org/commitlintrc.json"
+    },
+    {
+      "fileMatch": ["/.eslintrc.json"],
+      "url": "https://json.schemastore.org/eslintrc"
     },
     {
       "fileMatch": ["/.lintstagedrc.json"],
@@ -38,10 +37,6 @@
     {
       "fileMatch": ["/.releaserc.json"],
       "url": "https://json.schemastore.org/semantic-release.json"
-    },
-    {
-      "fileMatch": ["/.eslintrc.json"],
-      "url": "https://json.schemastore.org/eslintrc"
     },
     {
       "fileMatch": ["/babel.config.json"],
