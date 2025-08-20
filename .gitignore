@@ -6,7 +6,7 @@
 # dependencies
 node_modules
 
-# builds
+# build
 lib
 
 # typings
