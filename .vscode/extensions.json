@@ -11,6 +11,7 @@
     "knisterpeter.vscode-commitizen",
     "orta.vscode-jest",
     "redhat.vscode-yaml",
+    "remcohaszing.schemastore",
     "streetsidesoftware.code-spell-checker"
   ]
 }
