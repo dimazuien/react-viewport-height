@@ -1,6 +1,6 @@
 # IDE
 .vscode/*
-!.vscode/settings.recommended.json
+!.vscode/settings.json
 !.vscode/extensions.json
 
 # dependencies
