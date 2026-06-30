@@ -96,7 +96,7 @@
     "semantic-release": "25.0.5",
     "ts-jest": "29.4.11",
     "ts-node": "10.9.2",
-    "typescript": "5.9.3",
+    "typescript": "6.0.3",
     "webpack": "5.108.3",
     "webpack-cli": "7.1.0"
   },
