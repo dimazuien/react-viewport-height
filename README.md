@@ -3,7 +3,7 @@
 <!-- prettier-ignore-start -->
 [![npm Version](https://img.shields.io/npm/v/react-viewport-height.svg)](https://www.npmjs.com/package/react-viewport-height)
 ![npm downloads per week](https://img.shields.io/npm/dw/react-viewport-height)
-![Minified size](https://img.shields.io/bundlephobia/min/react-viewport-height)
+![Unpacked size](https://img.shields.io/npm/unpacked-size/react-viewport-height)
 [![Open issues](https://img.shields.io/github/issues-raw/dimazuien/react-viewport-height)](https://github.com/dimazuien/react-viewport-height/issues)
 [![Open pull requests](https://img.shields.io/github/issues-pr-raw/dimazuien/react-viewport-height)](https://github.com/dimazuien/react-viewport-height/pulls)
 [![GitHub Stars](https://img.shields.io/github/stars/dimazuien/react-viewport-height)](https://github.com/dimazuien/react-viewport-height/stargazers)

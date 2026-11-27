@@ -1,28 +1,26 @@
-<!-- Thanks for contributing! Please, read our contributing guidelines: https://github.com/dimazuien/react-viewport-height/blob/main/CONTRIBUTING.md -->
+- Closes #
 
-- Closes <!-- issue number here. e.g. "Closes #1234" -->
+## Changes
 
-### User-facing changelog
+### Features
 
-<!-- Explain the change(s) for every user to read in our changelog. Examples: https://github.com/dimazuien/react-viewport-height/blob/main/CHANGELOG.md -->
+- [ ] Feature 1
 
-### Additional details
+### Bugfixes
 
-<!-- Examples:
-- Why was this change necessary?
-- What is affected by this change?
-- Any implementation details to explain?
--->
+- [ ] Fix 1
 
-### How has the user experience changed?
+### Other
 
-<!-- Provide before and after examples of the change.
-Screenshots or GIFs are preferred. -->
+- [ ] Other change 1
 
-### PR Tasks
+## Notes (optional)
 
-<!-- These tasks must be completed before a PR is merged.
-Delete tasks if they are not applicable. -->
+- Anything reviewers should know (risk, rollout, follow-ups).
 
-- [ ] Have tests been added/updated?
-- [ ] Have docs been added/updated?
+## Checklist
+
+- [ ] Code follows project conventions
+- [ ] Self-review completed
+- [ ] Tests pass locally
+- [ ] Documentation updated

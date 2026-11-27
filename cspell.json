@@ -13,10 +13,13 @@
     "CHANGELOG.md"
   ],
   "words": [
+    "actboy",
     "commitlint",
     "dedupe",
     "dima",
     "dimazuien",
+    "direnv",
+    "envrc",
     "nvmrc",
     "proptypes",
     "usehooks",
