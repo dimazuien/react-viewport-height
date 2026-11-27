@@ -54,7 +54,7 @@
     "lint:spelling": "cspell lint --no-progress .",
     "prepare": "husky",
     "release": "semantic-release",
-    "reset": "rm -rf node_modules dist coverage junit.xml",
+    "reset": "rm -rf node_modules dist tsconfig.tsbuildinfo coverage junit.xml",
     "test": "vitest run",
     "test:coverage": "vitest run --coverage",
     "test:watch": "vitest --watch",
