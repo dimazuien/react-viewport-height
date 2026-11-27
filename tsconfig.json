@@ -22,11 +22,5 @@
       "@testing-library/jest-dom/vitest"
     ]
   },
-  "exclude": ["coverage", "dist", "lib", "node_modules"],
-  "ts-node": {
-    "compilerOptions": {
-      "module": "commonjs",
-      "moduleResolution": "node10"
-    }
-  }
+  "exclude": ["coverage", "dist", "node_modules"]
 }
