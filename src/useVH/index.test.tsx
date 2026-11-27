@@ -101,7 +101,6 @@ describe('useVH', () => {
           >
             Hide child 1
           </button>
-          {/* eslint-disable-next-line jest/no-conditional-in-test */}
           {child1Shown && <Child />}
           <Child />
         </>
@@ -145,9 +144,7 @@ describe('useVH', () => {
           >
             Hide child 2
           </button>
-          {/* eslint-disable-next-line jest/no-conditional-in-test */}
           {child1Shown && <Child />}
-          {/* eslint-disable-next-line jest/no-conditional-in-test */}
           {child2Shown && <Child />}
         </>
       );
