@@ -4,4 +4,4 @@ if [ -n "$CI" ]; then
   exit 0
 fi
 
-exec < /dev/tty && npx cz --hook || true
+exec < /dev/tty && pnpm exec cz --hook || true

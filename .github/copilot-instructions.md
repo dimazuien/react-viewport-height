@@ -6,7 +6,7 @@ This is a React hook library that provides a utility to set `100vh` equal to the
 
 ## Tech Stack
 
-- **Package manager**: npm
+- **Package manager**: pnpm
 - **Language**: TypeScript
 - **Framework**: React (hooks-based)
 - **Build**: Webpack + npm-dts for type definitions

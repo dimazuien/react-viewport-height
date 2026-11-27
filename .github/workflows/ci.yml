@@ -23,17 +23,21 @@ jobs:
           fetch-depth: 0
           persist-credentials: false
 
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v6
+        with:
+          cache: true
+
       - name: Setup NodeJS
         uses: actions/setup-node@v7
         with:
           node-version-file: '.nvmrc'
-          cache: npm
 
       - name: Install dependencies
-        run: npm ci
+        run: pnpm ci
 
       - name: Test the package
-        run: npm test -- --ci --runInBand
+        run: pnpm test --ci --runInBand
         env:
           JEST_JUNIT_OUTPUT_DIR: ./reports/
           JEST_JUNIT_ADD_FILE_ATTRIBUTE: 'true'
@@ -48,11 +52,11 @@ jobs:
             coverage
 
       - name: Lint code
-        run: npm run lint
+        run: pnpm lint
 
       - name: Lint commit messages
         if: github.ref != 'refs/heads/main'
-        run: npx commitlint --from origin/main --to ${{ github.sha }}
+        run: pnpm exec commitlint --from origin/main --to ${{ github.sha }}
 
   release:
     name: Release
@@ -70,20 +74,24 @@ jobs:
           fetch-depth: 0
           persist-credentials: false
 
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v6
+        with:
+          cache: true
+
       - name: Setup NodeJS
         uses: actions/setup-node@v7
         with:
           node-version-file: '.nvmrc'
-          cache: npm
 
       - name: Install dependencies
-        run: npm ci
+        run: pnpm ci
 
       - name: Build the package
-        run: npm run build
+        run: pnpm build
 
       - name: Generate d.ts file
-        run: npm run dts
+        run: pnpm dts
 
       # The release app bypasses the main ruleset, so semantic-release can push the release commit.
       - name: Generate release token
@@ -94,6 +102,6 @@ jobs:
           private-key: ${{ secrets.RELEASE_APP_PRIVATE_KEY }}
 
       - name: Release a new version of the package
-        run: npm run release
+        run: pnpm release
         env:
           GITHUB_TOKEN: ${{ steps.release-token.outputs.token }}

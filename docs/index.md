@@ -14,6 +14,12 @@ npm install react-viewport-height
 yarn add react-viewport-height
 ```
 
+- pnpm:
+
+```shell
+pnpm add react-viewport-height
+```
+
 This package works only in versions of React that support hooks.
 
 ## Usage
