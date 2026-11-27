@@ -31,6 +31,7 @@ src/
     ├── index.ts           # The hook
     └── index.test.tsx     # Its tests
 docs/index.md              # The user documentation
+.agents/skills/            # The agent skills, which AGENTS.md lists
 ```
 
 ### Common Commands
@@ -66,6 +67,7 @@ In VS Code, each command is also a task. With the recommended `actboy168.tasks` 
 - `package.json` pins exact versions, through `savePrefix: ''` in `pnpm-workspace.yaml`.
 - `pnpm-workspace.yaml` holds the supply-chain policy. pnpm installs a version only after it has been published for three days, and rejects a version with weaker trust evidence than an earlier release. Every exception there carries a reason and an exit condition, in the block comment above its list.
 - The peer dependency ranges are the package's public contract. Widening one is a `feat`, and narrowing one is a breaking change.
+- Toolchain and batch dependency updates follow the `update-dependencies` agent skill. Dependabot opens a pull request for each security update.
 
 ### TRACK Comments
 
@@ -135,6 +137,12 @@ Before opening or updating a pull request:
 - describe the testing you did
 
 GitHub Actions runs the same checks on every push: `typecheck`, `lint`, `lint-markdown`, `lint-spelling`, `lint-commits`, `unit-tests`, `dependency-audit` (`pnpm audit`, `pnpm audit signatures`, and `pnpm dedupe --check`), and `build`. CodeQL scans the code as well.
+
+## AI-assisted Development
+
+- `AGENTS.md` holds the instructions for AI coding tools. AI tools should read this guide for the workflow and the conventions before making non-trivial changes.
+- When you update `AGENTS.md`, keep this guide the source of truth for contributor-facing conventions, and keep `AGENTS.md` focused on what only agents need.
+- `.agents/skills/` holds the repository's agent skills, `review-spelling-words`, `review-track-comments`, and `update-dependencies`, and `.claude/skills` is a symlink to it.
 
 ## Security
 

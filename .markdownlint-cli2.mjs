@@ -1,7 +1,12 @@
 const config = {
   gitignore: true,
-  // A pull request template starts with its first section, not a title.
-  ignores: ['**/CHANGELOG.md', '.github/pull_request_template.md'],
+  ignores: [
+    // .claude/skills links to .agents/skills, which is linted already.
+    '.claude/skills/**',
+    '**/CHANGELOG.md',
+    // A pull request template starts with its first section, not a title.
+    '.github/pull_request_template.md',
+  ],
   config: {
     default: true,
     MD013: false,
