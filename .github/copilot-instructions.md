@@ -13,7 +13,7 @@ This is a React hook library that provides a utility to set `100vh` equal to the
 - **Testing**: Jest with React Testing Library
 - **Linting**: ESLint with Airbnb config + TypeScript rules
 - **Formatting**: Prettier
-- **CI/CD**: Semantic Release with conventional commits, CircleCI for the main flow, GitHub Actions for code scanning and security
+- **CI/CD**: Semantic Release with conventional commits, GitHub Actions for the main flow, code scanning, and security
 
 ## Project Structure
 
