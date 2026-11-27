@@ -1,0 +1,25 @@
+{
+  "$schema": "https://raw.githubusercontent.com/streetsidesoftware/cspell/main/cspell.schema.json",
+  "version": "0.2",
+  "language": "en",
+  "globRoot": "${cwd}",
+  "useGitignore": true,
+  "enableGlobDot": true,
+  "ignorePaths": [
+    ".git",
+    ".vscode",
+    "node_modules",
+    "pnpm-lock.yaml",
+    "CHANGELOG.md"
+  ],
+  "words": [
+    "commitlint",
+    "dedupe",
+    "dima",
+    "dimazuien",
+    "nvmrc",
+    "proptypes",
+    "usehooks",
+    "zuien"
+  ]
+}

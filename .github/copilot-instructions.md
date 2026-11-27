@@ -17,7 +17,7 @@ This is a React hook library that provides a utility to set `100vh` equal to the
 
 ## Project Structure
 
-```
+```text
 src/
 ├── index.ts             # Main export file
 ├── useVH/

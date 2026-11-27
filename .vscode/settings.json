@@ -1,17 +1,4 @@
 {
-  "cSpell.words": [
-    "automerge",
-    "codeql",
-    "commitlint",
-    "conventionalcommits",
-    "dima",
-    "dimazuien",
-    "pinst",
-    "postpublish",
-    "socio",
-    "testid",
-    "zuien"
-  ],
   "editor.codeActionsOnSave": {
     "source.fixAll": "explicit"
   },
