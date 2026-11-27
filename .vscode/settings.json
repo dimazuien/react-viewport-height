@@ -1,9 +1,36 @@
 {
+  "better-comments.tags": [
+    {
+      "tag": "!",
+      "color": "#FF2D00"
+    },
+    {
+      "tag": "?",
+      "color": "#3498DB"
+    },
+    {
+      "tag": "//",
+      "color": "#474747"
+    },
+    {
+      "tag": "todo",
+      "color": "#FF8C00"
+    },
+    {
+      "tag": "track",
+      "color": "#f0f25e"
+    },
+    {
+      "tag": "*",
+      "color": "#98C379"
+    }
+  ],
   "editor.codeActionsOnSave": {
     "source.fixAll": "explicit"
   },
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.formatOnSave": true,
   "js/ts.tsdk.path": "node_modules/typescript/lib",
-  "js/ts.tsdk.promptToUseWorkspaceVersion": true
+  "js/ts.tsdk.promptToUseWorkspaceVersion": true,
+  "vitest.configSearchPatternInclude": "vitest.config.ts"
 }

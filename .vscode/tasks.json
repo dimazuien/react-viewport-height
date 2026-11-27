@@ -1,0 +1,219 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "pnpm: install",
+      "type": "shell",
+      "command": "pnpm ci",
+      "options": {
+        "statusbar": {
+          "label": "$(arrow-down) pnpm: install"
+        }
+      }
+    },
+    {
+      "label": "pnpm: reset",
+      "type": "shell",
+      "command": "pnpm reset",
+      "options": {
+        "statusbar": {
+          "hide": true
+        }
+      }
+    },
+    {
+      "label": "pnpm: build",
+      "type": "shell",
+      "command": "pnpm build",
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "options": {
+        "statusbar": {
+          "label": "$(package) pnpm: build"
+        }
+      }
+    },
+    {
+      "label": "pnpm: build:watch",
+      "type": "shell",
+      "command": "pnpm build:watch",
+      "options": {
+        "statusbar": {
+          "hide": true
+        }
+      }
+    },
+    {
+      "label": "pnpm: build:watch (split)",
+      "detail": "Run the script in a dedicated terminal group using split panes",
+      "type": "shell",
+      "command": "pnpm build:watch",
+      "isBackground": true,
+      "presentation": {
+        "panel": "dedicated",
+        "group": "main",
+        "reveal": "always"
+      },
+      "options": {
+        "statusbar": {
+          "label": "$(package) pnpm: build:watch"
+        }
+      }
+    },
+    {
+      "label": "pnpm: typecheck",
+      "type": "shell",
+      "command": "pnpm typecheck",
+      "problemMatcher": "$tsc",
+      "group": "test",
+      "options": {
+        "statusbar": {
+          "hide": true
+        }
+      }
+    },
+    {
+      "label": "pnpm: typecheck:watch",
+      "type": "shell",
+      "command": "pnpm typecheck:watch",
+      "isBackground": true,
+      "problemMatcher": "$tsc-watch",
+      "options": {
+        "statusbar": {
+          "hide": true
+        }
+      }
+    },
+    {
+      "label": "pnpm: typecheck:watch (split)",
+      "detail": "Run the script in a dedicated terminal group using split panes",
+      "type": "shell",
+      "command": "pnpm typecheck:watch",
+      "isBackground": true,
+      "problemMatcher": "$tsc-watch",
+      "presentation": {
+        "panel": "dedicated",
+        "group": "main",
+        "reveal": "always"
+      },
+      "options": {
+        "statusbar": {
+          "label": "$(check) pnpm: typecheck:watch"
+        }
+      }
+    },
+    {
+      "label": "pnpm: lint",
+      "type": "shell",
+      "command": "pnpm lint",
+      "problemMatcher": "$eslint-stylish",
+      "group": "test",
+      "options": {
+        "statusbar": {
+          "hide": true
+        }
+      }
+    },
+    {
+      "label": "pnpm: lint:markdown",
+      "type": "shell",
+      "command": "pnpm lint:markdown",
+      "group": "test",
+      "options": {
+        "statusbar": {
+          "hide": true
+        }
+      }
+    },
+    {
+      "label": "pnpm: lint:spelling",
+      "type": "shell",
+      "command": "pnpm lint:spelling",
+      "group": "test",
+      "options": {
+        "statusbar": {
+          "hide": true
+        }
+      }
+    },
+    {
+      "label": "pnpm: format",
+      "type": "shell",
+      "command": "pnpm format",
+      "options": {
+        "statusbar": {
+          "hide": true
+        }
+      }
+    },
+    {
+      "label": "pnpm: test",
+      "type": "shell",
+      "command": "pnpm test",
+      "group": {
+        "kind": "test",
+        "isDefault": true
+      },
+      "options": {
+        "statusbar": {
+          "hide": true
+        }
+      }
+    },
+    {
+      "label": "pnpm: test:coverage",
+      "type": "shell",
+      "command": "pnpm test:coverage",
+      "group": "test",
+      "options": {
+        "statusbar": {
+          "hide": true
+        }
+      }
+    },
+    {
+      "label": "pnpm: test:watch",
+      "type": "shell",
+      "command": "pnpm test:watch",
+      "group": "test",
+      "options": {
+        "statusbar": {
+          "hide": true
+        }
+      }
+    },
+    {
+      "label": "pnpm: test:watch (split)",
+      "detail": "Run the script in a dedicated terminal group using split panes",
+      "type": "shell",
+      "command": "pnpm test:watch",
+      "isBackground": true,
+      "group": "test",
+      "presentation": {
+        "panel": "dedicated",
+        "group": "main",
+        "reveal": "always"
+      },
+      "options": {
+        "statusbar": {
+          "label": "$(beaker) pnpm: test:watch"
+        }
+      }
+    },
+    {
+      "label": "pnpm: all",
+      "dependsOn": [
+        "pnpm: build:watch (split)",
+        "pnpm: typecheck:watch (split)",
+        "pnpm: test:watch (split)"
+      ],
+      "options": {
+        "statusbar": {
+          "label": "$(rocket) pnpm: all"
+        }
+      }
+    }
+  ]
+}

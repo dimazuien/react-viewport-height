@@ -1,14 +1,15 @@
-# IDE
-.vscode/*
-!.vscode/settings.json
-!.vscode/extensions.json
-
 # dependencies
 node_modules
 
 # build
 dist
 
+# typescript
+*.tsbuildinfo
+
 # tests
-junit.xml
-coverage
+**/coverage
+**/junit.xml
+
+# env file
+.env
