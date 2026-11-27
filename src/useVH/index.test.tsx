@@ -7,6 +7,7 @@ import {
 } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { useState } from 'react';
+import { renderToString } from 'react-dom/server';
 
 import useVH from '.';
 
@@ -21,6 +22,12 @@ const Child = () => {
 
 describe('useVH', () => {
   const user = userEvent.setup();
+
+  it('should return 0 when rendering on the server', () => {
+    const App = () => String(useVH());
+
+    expect(renderToString(<App />)).toBe('0');
+  });
 
   it('should set custom CSS property "--vh" that equals to one hundredth of the inner window height', () => {
     const vh = window.innerHeight / 100;

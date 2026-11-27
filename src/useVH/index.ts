@@ -1,39 +1,40 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useEffect, useSyncExternalStore } from 'react';
 
 const VARIABLE_NAME = '--vh';
 
-const getActualVh = () => Number((window.innerHeight * 0.01).toFixed(2));
+const getVh = () => Number((window.innerHeight * 0.01).toFixed(2));
+
+// The server has no window, so server rendering and hydration see 0.
+const getServerVh = () => 0;
+
+const subscribe = (onResize: () => void) => {
+  window.addEventListener('resize', onResize);
+
+  return () => {
+    window.removeEventListener('resize', onResize);
+  };
+};
 
 let count = 0;
 
 const useVH = (): number => {
-  const [vh, setVh] = useState(0);
-  const updateVh = useCallback(() => {
-    const newVh = getActualVh();
+  const vh = useSyncExternalStore(subscribe, getVh, getServerVh);
 
-    document.documentElement.style.setProperty(VARIABLE_NAME, `${newVh}px`);
-    setVh(newVh);
-  }, [setVh]);
+  useEffect(() => {
+    document.documentElement.style.setProperty(VARIABLE_NAME, `${vh}px`);
+  }, [vh]);
 
   useEffect(() => {
     count += 1;
 
-    // The first render returns 0 to match server rendering, so the window is read after mount.
-    // eslint-disable-next-line react-hooks/set-state-in-effect
-    updateVh();
-
-    window.addEventListener('resize', updateVh);
-
     return () => {
-      window.removeEventListener('resize', updateVh);
-
       count -= 1;
 
       if (count === 0) {
         document.documentElement.style.removeProperty(VARIABLE_NAME);
       }
     };
-  }, [updateVh]);
+  }, []);
 
   return vh;
 };

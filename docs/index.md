@@ -20,11 +20,11 @@ yarn add react-viewport-height
 pnpm add react-viewport-height
 ```
 
-This package works only in versions of React that support hooks.
+It needs React 18 or 19.
 
 ## Usage
 
-`useVH` returns 1% of `window.innerHeight` in pixels, the size of one `vh` unit. When the window resizes, the hook updates the value and re-renders the component. On the first render, it returns `0`, because it reads the window in an effect.
+`useVH` returns 1% of `window.innerHeight` in pixels, the size of one `vh` unit. When the window resizes, the hook updates the value and re-renders the component. During server rendering and hydration, it returns `0`, because the server has no window.
 
 Use the value in calculations that need the viewport height in JavaScript, for example to work out how many rows fit on the screen:
 
