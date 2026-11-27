@@ -1,3 +1,20 @@
+## [2.0.0](https://github.com/dimazuien/react-viewport-height/compare/v1.3.0...v2.0.0) (2026-11-27)
+
+### ⚠ BREAKING CHANGES
+
+- The build targets the browsers that Baseline lists as widely available, Chrome 125, Edge 125, Firefox 126, and Safari 17.5 today, instead of ES2020. The target moves forward with Baseline.
+- The package needs React 18 or 19.
+- The exports map exposes only the root entry point and package.json, so deep imports no longer resolve. The UMD bundle in lib/ and the root index.d.ts are gone, and the code now targets ES2020 instead of ES5.
+
+### Features
+
+- read the viewport height with useSyncExternalStore ([cac53d0](https://github.com/dimazuien/react-viewport-height/commit/cac53d08f251636be385568a784dbe5dc3dee5e5))
+
+### Build System
+
+- ship ESM and CommonJS builds with an exports map ([6726896](https://github.com/dimazuien/react-viewport-height/commit/67268960a6238669564ea11f19208f3964722528))
+- target Baseline widely available browsers ([97ac4e2](https://github.com/dimazuien/react-viewport-height/commit/97ac4e268c239dfff7e1b71b664d6b4739cdeeef))
+
 ## [1.3.0](https://github.com/dimazuien/react-viewport-height/compare/v1.2.2...v1.3.0) (2026-11-27)
 
 ### Features
