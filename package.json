@@ -48,11 +48,13 @@
   "scripts": {
     "build": "tsdown",
     "build:watch": "tsdown --watch",
+    "format": "prettier . --write",
     "lint": "eslint --max-warnings=0 --no-warn-ignored --fix",
     "lint:markdown": "markdownlint-cli2 \"**/*.md\"",
     "lint:spelling": "cspell lint --no-progress .",
     "prepare": "husky",
     "release": "semantic-release",
+    "reset": "rm -rf node_modules dist coverage junit.xml",
     "test": "vitest run",
     "test:coverage": "vitest run --coverage",
     "test:watch": "vitest --watch",

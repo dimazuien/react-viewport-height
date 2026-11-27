@@ -1,5 +1,7 @@
 {
   "recommendations": [
+    "aaron-bond.better-comments",
+    "actboy168.tasks",
     "davidanson.vscode-markdownlint",
     "dbaeumer.vscode-eslint",
     "editorconfig.editorconfig",
