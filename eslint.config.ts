@@ -27,14 +27,7 @@ const JS_TS_FILES = ['**/*.{js,jsx,ts,tsx,cjs,mjs,cts,mts}'];
 const TEST_FILES = ['**/*.test.{js,jsx,ts,tsx,cjs,mjs,cts,mts}'];
 
 export default defineConfig([
-  globalIgnores([
-    'coverage/**',
-    'dist/**',
-    'lib/**',
-    'index.d.ts',
-    'CHANGELOG.md',
-    'pnpm-lock.yaml',
-  ]),
+  globalIgnores(['coverage/**', 'dist/**', 'CHANGELOG.md', 'pnpm-lock.yaml']),
   {
     languageOptions: {
       parserOptions: { tsconfigRootDir: rootDir },
@@ -67,10 +60,6 @@ export default defineConfig([
     // the glob has to follow the spread to stay authoritative.
     ...packageJson.configs.recommended,
     files: ['**/package.json'],
-    rules: {
-      ...packageJson.configs.recommended.rules,
-      'package-json/require-exports': 'off',
-    },
   },
   {
     files: JS_TS_FILES,

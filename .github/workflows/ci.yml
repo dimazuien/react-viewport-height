@@ -90,9 +90,6 @@ jobs:
       - name: Build the package
         run: pnpm build
 
-      - name: Generate d.ts file
-        run: pnpm dts
-
       # The release app bypasses the main ruleset, so semantic-release can push the release commit.
       - name: Generate release token
         id: release-token
