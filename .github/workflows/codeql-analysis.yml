@@ -8,6 +8,10 @@ on:
   schedule:
     - cron: '0 0 * * 0'
 
+permissions:
+  contents: read
+  security-events: write
+
 jobs:
   analyze:
     name: Analyze
@@ -21,26 +25,15 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v7
-
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v6
         with:
-          cache: true
+          persist-credentials: false
 
-      - name: Setup NodeJS
-        uses: actions/setup-node@v7
-        with:
-          node-version-file: '.nvmrc'
-
+      # CodeQL analyzes JavaScript and TypeScript from the source, so no install or build runs.
       - name: Initialize CodeQL
         uses: github/codeql-action/init@v4
         with:
           languages: ${{ matrix.language }}
-
-      - name: Install dependencies and build
-        run: |
-          pnpm ci
-          pnpm build
+          build-mode: none
 
       - name: Perform CodeQL Analysis
         uses: github/codeql-action/analyze@v4

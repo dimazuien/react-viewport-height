@@ -12,36 +12,67 @@ concurrency:
   cancel-in-progress: ${{ github.ref != 'refs/heads/main' }}
 
 jobs:
-  check:
-    name: Check
+  typecheck:
+    name: typecheck
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v7
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - uses: ./.github/actions/setup
+      - run: pnpm typecheck
+
+  lint:
+    name: lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - uses: ./.github/actions/setup
+      - run: pnpm lint
+
+  lint-markdown:
+    name: lint-markdown
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - uses: ./.github/actions/setup
+      - run: pnpm lint:markdown
+
+  lint-spelling:
+    name: lint-spelling
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - uses: ./.github/actions/setup
+      - run: pnpm lint:spelling
+
+  lint-commits:
+    name: lint-commits
+    if: github.ref != 'refs/heads/main'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
         with:
           fetch-depth: 0
           persist-credentials: false
+      - uses: ./.github/actions/setup
+      - run: pnpm exec commitlint --from origin/main --to ${{ github.sha }}
 
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v6
+  unit-tests:
+    name: unit-tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
         with:
-          cache: true
-
-      - name: Setup NodeJS
-        uses: actions/setup-node@v7
-        with:
-          node-version-file: '.nvmrc'
-
-      - name: Install dependencies
-        run: pnpm ci
-
-      - name: Type-check the code
-        run: pnpm typecheck
-
-      - name: Test the package
-        run: pnpm test:coverage
-
+          persist-credentials: false
+      - uses: ./.github/actions/setup
+      - run: pnpm test:coverage
       - name: Save test results and coverage
         if: ${{ !cancelled() }}
         uses: actions/upload-artifact@v7
@@ -51,44 +82,50 @@ jobs:
             junit.xml
             coverage
 
-      - name: Lint code
-        run: pnpm lint
+  dependency-audit:
+    name: dependency-audit
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - uses: ./.github/actions/setup
+      - run: pnpm audit
+      - run: pnpm audit signatures
+      - run: pnpm dedupe --check
 
-      - name: Lint commit messages
-        if: github.ref != 'refs/heads/main'
-        run: pnpm exec commitlint --from origin/main --to ${{ github.sha }}
+  build:
+    name: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - uses: ./.github/actions/setup
+      - run: pnpm build
 
   release:
-    name: Release
-    needs: check
+    name: release
+    needs:
+      - typecheck
+      - lint
+      - lint-markdown
+      - lint-spelling
+      - unit-tests
+      - dependency-audit
+      - build
     if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     permissions:
       contents: read
       id-token: write
-
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v7
+      - uses: actions/checkout@v7
         with:
           fetch-depth: 0
           persist-credentials: false
-
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v6
-        with:
-          cache: true
-
-      - name: Setup NodeJS
-        uses: actions/setup-node@v7
-        with:
-          node-version-file: '.nvmrc'
-
-      - name: Install dependencies
-        run: pnpm ci
-
-      - name: Build the package
-        run: pnpm build
+      - uses: ./.github/actions/setup
+      - run: pnpm build
 
       # The release app bypasses the main ruleset, so semantic-release can push the release commit.
       - name: Generate release token
