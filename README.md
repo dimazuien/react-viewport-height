@@ -1,5 +1,6 @@
 # react-viewport-height
 
+<!-- prettier-ignore-start -->
 [![npm Version](https://img.shields.io/npm/v/react-viewport-height.svg)](https://www.npmjs.com/package/react-viewport-height)
 ![npm downloads per week](https://img.shields.io/npm/dw/react-viewport-height)
 ![Minified size](https://img.shields.io/bundlephobia/min/react-viewport-height)
@@ -8,6 +9,7 @@
 [![GitHub Stars](https://img.shields.io/github/stars/dimazuien/react-viewport-height)](https://github.com/dimazuien/react-viewport-height/stargazers)
 ![CI status](https://img.shields.io/github/actions/workflow/status/dimazuien/react-viewport-height/ci.yml?branch=main&label=ci)
 ![Code scanning](https://img.shields.io/github/actions/workflow/status/dimazuien/react-viewport-height/codeql-analysis.yml?branch=main)
+<!-- prettier-ignore-end -->
 
 A React hook that returns the size of one `vh` unit, 1% of the browser's inner window height, and keeps it up to date when the window resizes.
 
