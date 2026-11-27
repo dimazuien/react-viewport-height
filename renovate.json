@@ -9,6 +9,16 @@
       "matchCurrentVersion": "!/^0/",
       "automerge": true,
       "automergeType": "branch"
+    },
+    {
+      "description": "Hold TypeScript below 7 until typescript-eslint supports it: https://github.com/typescript-eslint/typescript-eslint/issues/10940",
+      "matchPackageNames": ["typescript"],
+      "allowedVersions": "<7"
+    },
+    {
+      "description": "Hold ESLint below 10 until eslint-plugin-react supports it: https://github.com/jsx-eslint/eslint-plugin-react/issues/4018",
+      "matchPackageNames": ["eslint"],
+      "allowedVersions": "<10"
     }
   ]
 }
