@@ -19,6 +19,8 @@ const useVH = (): number => {
     if (typeof window !== 'undefined') {
       count += 1;
 
+      // The first render returns 0 to match server rendering, so the window is read after mount.
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       updateVh();
 
       window.addEventListener('resize', updateVh);
