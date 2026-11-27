@@ -5,7 +5,8 @@ export default defineConfig({
   plugins: [react()],
   test: {
     include: ['**/*.test.{js,jsx,ts,tsx,cjs,mjs,cts,mts}'],
-    exclude: [...configDefaults.exclude],
+    // .claude/skills links to .agents/skills, whose tests already run.
+    exclude: [...configDefaults.exclude, '.claude/**'],
     environment: 'jsdom',
     globals: true,
     setupFiles: ['./vitest.setup.ts'],

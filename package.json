@@ -58,7 +58,7 @@
     "test": "vitest run",
     "test:coverage": "vitest run --coverage",
     "test:watch": "vitest --watch",
-    "typecheck": "tsc --noEmit --pretty --project tsconfig.json",
+    "typecheck": "tsc --noEmit --pretty --project tsconfig.json && tsc --noEmit --pretty --project .agents",
     "typecheck:watch": "tsc --watch --noEmit --incremental --preserveWatchOutput --pretty --project tsconfig.json"
   },
   "devDependencies": {

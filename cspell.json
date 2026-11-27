@@ -20,8 +20,14 @@
     "dimazuien",
     "direnv",
     "envrc",
+    "mapfile",
+    "nosonar",
     "nvmrc",
+    "pandoc",
+    "pipefail",
     "proptypes",
+    "readlink",
+    "shellcheck",
     "usehooks",
     "zuien"
   ]
