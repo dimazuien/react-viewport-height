@@ -5,11 +5,8 @@ node_modules
 dist
 
 # typescript
-*.tsbuildinfo
+tsconfig.tsbuildinfo
 
 # tests
-**/coverage
-**/junit.xml
-
-# env file
-.env
+coverage
+junit.xml
