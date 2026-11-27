@@ -19,10 +19,6 @@
     "mobile"
   ],
   "author": "Dima Zuien",
-  "funding": {
-    "type": "patreon",
-    "url": "https://www.patreon.com/dimazuien"
-  },
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/dimazuien/react-viewport-height/issues"
