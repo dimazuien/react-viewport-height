@@ -19,6 +19,11 @@
       "description": "Hold ESLint below 10 until eslint-plugin-react supports it: https://github.com/jsx-eslint/eslint-plugin-react/issues/4018",
       "matchPackageNames": ["eslint"],
       "allowedVersions": "<10"
+    },
+    {
+      "description": "Hold the changelog preset below 10 until release-notes-generator ships conventional-changelog-writer 9: https://github.com/semantic-release/release-notes-generator/issues/1027",
+      "matchPackageNames": ["conventional-changelog-conventionalcommits"],
+      "allowedVersions": "<10"
     }
   ]
 }
