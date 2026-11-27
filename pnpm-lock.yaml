@@ -314,9 +314,6 @@ importers:
       npm-dts:
         specifier: 1.3.13
         version: 1.3.13
-      pinst:
-        specifier: 3.0.0
-        version: 3.0.0
       prettier:
         specifier: 3.10.1
         version: 3.10.1
@@ -4320,11 +4317,6 @@ packages:
   pify@3.0.0:
     resolution: {integrity: sha512-C3FsVNH1udSEX48gGX1xfvwTWfsYWj5U+8/uK15BGzIGrKoUpghX8hWZwa/OFnakBiiVNmBvemTJR5mcy7iPcg==}
     engines: {node: '>=4'}
-
-  pinst@3.0.0:
-    resolution: {integrity: sha512-cengSmBxtCyaJqtRSvJorIIZXMXg+lJ3sIljGmtBGUVonMnMsVJbnzl6jGN1HkOWwxNuJynCJ2hXxxqCQrFDdw==}
-    engines: {node: '>=12.0.0'}
-    hasBin: true
 
   pirates@4.0.6:
     resolution: {integrity: sha512-saLsH7WeYYPiD25LDuLRRY/i+6HaPYr6G1OUlN39otzkSTxKnubR9RTxS3/Kk50s1g2JTgFwWQDQyplC5/SHZg==}
@@ -10077,8 +10069,6 @@ snapshots:
   picomatch@4.0.7: {}
 
   pify@3.0.0: {}
-
-  pinst@3.0.0: {}
 
   pirates@4.0.6: {}
 
