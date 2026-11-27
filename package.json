@@ -89,7 +89,7 @@
     "prettier": "3.10.1",
     "react": "19.3.1",
     "react-dom": "19.3.1",
-    "semantic-release": "26.0.1",
+    "semantic-release": "25.0.9",
     "ts-jest": "29.4.15",
     "ts-node": "10.9.2",
     "typescript": "5.9.3",

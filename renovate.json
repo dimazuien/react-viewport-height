@@ -24,6 +24,11 @@
       "description": "Hold the changelog preset below 10 until release-notes-generator ships conventional-changelog-writer 9: https://github.com/semantic-release/release-notes-generator/issues/1027",
       "matchPackageNames": ["conventional-changelog-conventionalcommits"],
       "allowedVersions": "<10"
+    },
+    {
+      "description": "Hold semantic-release below 26 until its plugins leave prerelease: 26 loads beta versions of commit-analyzer, release-notes-generator, and npm.",
+      "matchPackageNames": ["semantic-release"],
+      "allowedVersions": "<26"
     }
   ]
 }
