@@ -13,8 +13,7 @@ lockfile:
 # explicit setting keeps it if the default changes.
 blockExoticSubdeps: true
 
-# Hold newly published versions for three days, the same cooldown as Renovate's
-# minimumReleaseAge in renovate.json.
+# Hold newly published versions for three days.
 minimumReleaseAge: 4320
 minimumReleaseAgeExcludePrune: true
 
