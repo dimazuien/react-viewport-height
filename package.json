@@ -85,6 +85,7 @@
     "@vitejs/plugin-react": "6.3.0",
     "@vitest/coverage-istanbul": "5.1.1",
     "@vitest/eslint-plugin": "1.6.28",
+    "browserslist": "4.29.6",
     "commitizen": "4.3.2",
     "conventional-changelog-conventionalcommits": "9.3.1",
     "cspell": "10.5.2",
