@@ -1,6 +1,5 @@
 {
   "recommendations": [
-    "circleci.circleci",
     "davidanson.vscode-markdownlint",
     "dbaeumer.vscode-eslint",
     "editorconfig.editorconfig",

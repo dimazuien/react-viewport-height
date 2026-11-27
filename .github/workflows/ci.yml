@@ -1,0 +1,99 @@
+name: 'CI'
+
+on:
+  push:
+    branches: ['**']
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.ref != 'refs/heads/main' }}
+
+jobs:
+  check:
+    name: Check
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Setup NodeJS
+        uses: actions/setup-node@v7
+        with:
+          node-version-file: '.nvmrc'
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Test the package
+        run: npm test -- --ci --runInBand
+        env:
+          JEST_JUNIT_OUTPUT_DIR: ./reports/
+          JEST_JUNIT_ADD_FILE_ATTRIBUTE: 'true'
+
+      - name: Save test results and coverage
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@v7
+        with:
+          name: test-results
+          path: |
+            reports
+            coverage
+
+      - name: Lint code
+        run: npm run lint
+
+      - name: Lint commit messages
+        if: github.ref != 'refs/heads/main'
+        run: npx commitlint --from origin/main --to ${{ github.sha }}
+
+  release:
+    name: Release
+    needs: check
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Setup NodeJS
+        uses: actions/setup-node@v7
+        with:
+          node-version-file: '.nvmrc'
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build the package
+        run: npm run build
+
+      - name: Generate d.ts file
+        run: npm run dts
+
+      # The release app bypasses the main ruleset, so semantic-release can push the release commit.
+      - name: Generate release token
+        id: release-token
+        uses: actions/create-github-app-token@v3
+        with:
+          client-id: ${{ vars.RELEASE_APP_CLIENT_ID }}
+          private-key: ${{ secrets.RELEASE_APP_PRIVATE_KEY }}
+
+      - name: Release a new version of the package
+        run: npm run release
+        env:
+          GITHUB_TOKEN: ${{ steps.release-token.outputs.token }}
