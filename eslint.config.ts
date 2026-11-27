@@ -25,6 +25,7 @@ const rootDir = dirname(fileURLToPath(import.meta.url));
 
 const JS_TS_FILES = ['**/*.{js,jsx,ts,tsx,cjs,mjs,cts,mts}'];
 const TEST_FILES = ['**/*.test.{js,jsx,ts,tsx,cjs,mjs,cts,mts}'];
+const SOURCE_FILES = ['src/**/*.{ts,tsx}'];
 
 export default defineConfig([
   globalIgnores(['coverage/**', 'dist/**', 'CHANGELOG.md', 'pnpm-lock.yaml']),
@@ -61,19 +62,30 @@ export default defineConfig([
     ...packageJson.configs.recommended,
     files: ['**/package.json'],
   },
+  // Baseline describes browsers, so its rules cover the published source. Configs, tests, and
+  // agent scripts run in Node.js.
   {
-    files: JS_TS_FILES,
+    files: SOURCE_FILES,
+    ignores: TEST_FILES,
     plugins: { 'baseline-js': baselineJs as Plugin },
     rules: {
-      'baseline-js/use-baseline': ['error', { available: 'newly' }],
+      'baseline-js/use-baseline': ['error', { available: 'widely' }],
     },
   },
-  baselineJs.configs.recommended({
-    available: 'newly',
-  }) as unknown as ConfigObject,
-  baselineJs.configs['recommended-ts']({
-    available: 'newly',
-  }) as unknown as ConfigObject,
+  {
+    ...(baselineJs.configs.recommended({
+      available: 'widely',
+    }) as unknown as ConfigObject),
+    files: SOURCE_FILES,
+    ignores: TEST_FILES,
+  },
+  {
+    ...(baselineJs.configs['recommended-ts']({
+      available: 'widely',
+    }) as unknown as ConfigObject),
+    files: SOURCE_FILES,
+    ignores: TEST_FILES,
+  },
   prettierConfig,
   ...tseslint.configs.recommended.map((config) => ({
     ...config,
