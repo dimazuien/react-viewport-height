@@ -1,21 +1,32 @@
 {
   "compilerOptions": {
-    "rootDir": ".",
-    "target": "es5",
-    "lib": ["dom", "dom.iterable", "esnext"],
-    "allowJs": true,
-    "skipLibCheck": true,
+    "target": "esnext",
+    "lib": ["esnext", "dom"],
+    "module": "esnext",
+    "moduleResolution": "bundler",
     "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
-    "strict": true,
-    "forceConsistentCasingInFileNames": true,
-    "noFallthroughCasesInSwitch": true,
-    "module": "commonjs",
-    "moduleResolution": "node",
+    "isolatedModules": true,
     "resolveJsonModule": true,
-    "isolatedModules": false,
-    "jsx": "react-jsx"
+    "erasableSyntaxOnly": true,
+    "allowJs": true,
+    "checkJs": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "noEmit": true,
+    "jsx": "react-jsx",
+    "types": [
+      "node",
+      "react",
+      "react-dom",
+      "vitest/globals",
+      "@testing-library/jest-dom/vitest"
+    ]
   },
-  "include": ["**/*.js", "**/*.jsx", "**/*.ts", "**/*.tsx"],
-  "exclude": ["node_modules", "lib", "coverage"]
+  "exclude": ["coverage", "dist", "lib", "node_modules"],
+  "ts-node": {
+    "compilerOptions": {
+      "module": "commonjs",
+      "moduleResolution": "node10"
+    }
+  }
 }

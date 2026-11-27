@@ -7,9 +7,9 @@
     "github.vscode-github-actions",
     "github.vscode-pull-request-github",
     "joshbolduc.commitlint",
-    "orta.vscode-jest",
     "redhat.vscode-yaml",
     "remcohaszing.schemastore",
-    "streetsidesoftware.code-spell-checker"
+    "streetsidesoftware.code-spell-checker",
+    "vitest.explorer"
   ]
 }

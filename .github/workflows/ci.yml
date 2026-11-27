@@ -36,11 +36,11 @@ jobs:
       - name: Install dependencies
         run: pnpm ci
 
+      - name: Type-check the code
+        run: pnpm typecheck
+
       - name: Test the package
-        run: pnpm test --ci --runInBand
-        env:
-          JEST_JUNIT_OUTPUT_DIR: ./reports/
-          JEST_JUNIT_ADD_FILE_ATTRIBUTE: 'true'
+        run: pnpm test:coverage
 
       - name: Save test results and coverage
         if: ${{ !cancelled() }}
@@ -48,7 +48,7 @@ jobs:
         with:
           name: test-results
           path: |
-            reports
+            junit.xml
             coverage
 
       - name: Lint code
