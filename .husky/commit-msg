@@ -4,4 +4,4 @@ if [ -n "$CI" ]; then
   exit 0
 fi
 
-npx commitlint --edit $1
+pnpm exec commitlint --edit "$1"

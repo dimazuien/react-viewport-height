@@ -1,0 +1,28 @@
+savePrefix: ''
+
+# Deduplicate whenever pnpm writes the lockfile, so an install or update already leaves it in the
+# state the `pnpm dedupe --check` CI gate expects. Frozen installs never rewrite the lockfile.
+autoDedupe: true
+
+# Record resolution settings so subsequent installs reuse the deduplicated lockfile and frozen
+# installs reject a lockfile resolved with different settings.
+lockfile:
+  includeResolutionSettings: true
+
+# Transitive dependencies must resolve from the registry. pnpm 12 already defaults to this. The
+# explicit setting keeps it if the default changes.
+blockExoticSubdeps: true
+
+# Hold newly published versions for three days, the same cooldown as Renovate's
+# minimumReleaseAge in renovate.json.
+minimumReleaseAge: 4320
+minimumReleaseAgeExcludePrune: true
+
+trustPolicy: no-downgrade
+trustPolicyExcludePrune: true
+
+audit:
+  # The severity CI fails on, so a bare `pnpm audit` matches the pipeline.
+  level: high
+  # `pnpm audit --fix` drops an ignored advisory (an `ignore` entry) once it leaves the report.
+  ignorePrune: true

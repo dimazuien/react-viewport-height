@@ -4,4 +4,4 @@ if [ -n "$CI" ]; then
   exit 0
 fi
 
-npx lint-staged
+pnpm exec lint-staged
