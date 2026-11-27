@@ -38,9 +38,7 @@
     "dts": "npm-dts generate -e src/index --tsc=\"-p tsconfig.build.json\"",
     "lint": "eslint .",
     "test": "jest",
-    "prepublishOnly": "pinst --disable",
-    "release": "semantic-release",
-    "postpublish": "pinst --enable"
+    "release": "semantic-release"
   },
   "devDependencies": {
     "@babel/core": "7.29.13",
@@ -88,7 +86,6 @@
     "jest-junit": "17.0.0",
     "lint-staged": "17.6.2",
     "npm-dts": "1.3.13",
-    "pinst": "3.0.0",
     "prettier": "3.10.1",
     "react": "19.3.1",
     "react-dom": "19.3.1",
