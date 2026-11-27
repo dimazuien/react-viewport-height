@@ -41,7 +41,3 @@ const App = () => {
 ```
 
 Read [the documentation](https://github.com/dimazuien/react-viewport-height/blob/main/docs/index.md) for more details. You can also play with a [demo](https://codesandbox.io/s/react-viewport-height-90o4j).
-
-## Support
-
-If you like this package and want to support it, you can do it on [Patreon](https://www.patreon.com/dimazuien)
