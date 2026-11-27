@@ -38,7 +38,7 @@
   "scripts": {
     "prepare": "husky",
     "build": "webpack",
-    "dts": "npx npm-dts generate -e src/index",
+    "dts": "npx npm-dts generate -e src/index --tsc=\"-p tsconfig.build.json\"",
     "lint": "eslint .",
     "test": "jest",
     "prepublishOnly": "pinst --disable",
