@@ -3,6 +3,9 @@
 // https://github.com/semantic-release/release-notes-generator/issues/1027
 const changelogPreset = { preset: 'conventionalcommits' };
 
+// TRACK: Move semantic-release from 25 to 26 when its plugins leave prerelease: 26 loads beta
+// versions of @semantic-release/commit-analyzer 14, release-notes-generator 15, and npm 14.
+
 const config = {
   branches: ['main'],
   plugins: [
