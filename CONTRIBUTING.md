@@ -59,6 +59,7 @@ In VS Code, each command is also a task. With the recommended `actboy168.tasks` 
 
 - Write documentation, comments, and identifiers in American English. `pnpm lint:spelling` checks spelling against the en-US dictionaries. Fix real typos, and add legitimate terms to `cspell.json`.
 - Keep each module in a folder with an `index` file, and keep its tests next to it. Export a new module from `src/index.ts`.
+- Use only JavaScript features that Baseline lists as widely available. ESLint checks the source against that list, and `tsdown.config.ts` compiles the syntax for the same browsers, so both move forward with Baseline.
 - A change to the public API updates `README.md` and `docs/index.md` in the same pull request.
 - When you add, rename, or remove a `package.json` script, update `.vscode/tasks.json` in the same change. It holds a `pnpm: <script>` task for each script a developer runs by hand, and none for `prepare` or `release`. Only the tasks of the development flow show in the status bar. Every other task sets `options.statusbar.hide`. A watch-mode script gets a second task, `pnpm: <script> (split)`, which runs it in the shared `main` terminal group, shows in the status bar in place of the plain task, and joins `pnpm: all`.
 
