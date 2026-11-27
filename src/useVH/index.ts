@@ -16,15 +16,14 @@ const useVH = (): number => {
   }, [setVh]);
 
   useEffect(() => {
-    if (typeof window !== 'undefined') {
-      count += 1;
+    count += 1;
 
-      // The first render returns 0 to match server rendering, so the window is read after mount.
-      // eslint-disable-next-line react-hooks/set-state-in-effect
-      updateVh();
+    // The first render returns 0 to match server rendering, so the window is read after mount.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    updateVh();
 
-      window.addEventListener('resize', updateVh);
-    }
+    window.addEventListener('resize', updateVh);
+
     return () => {
       window.removeEventListener('resize', updateVh);
 
