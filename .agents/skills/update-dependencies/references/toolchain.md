@@ -37,3 +37,4 @@ A `TRACK` comment beside the code that depends on the hold keeps each of these p
 | `typescript` | 6 | typescript-eslint supports TypeScript 7 | `eslint.config.ts`, above the `typescript-eslint` import |
 | `eslint` | 9 | eslint-plugin-react and eslint-plugin-jsx-a11y support ESLint 10 | `eslint.config.ts`, above the `eslint-plugin-jsx-a11y` import |
 | `conventional-changelog-conventionalcommits` | 9.3.1 | `@semantic-release/release-notes-generator` ships conventional-changelog-writer 9 | `release.config.ts`, at the top |
+| `semantic-release` | 25 | `@semantic-release/commit-analyzer` 14, `@semantic-release/release-notes-generator` 15, and `@semantic-release/npm` 14 ship stable releases | `release.config.ts`, below the changelog preset |
