@@ -9,11 +9,12 @@
 ![CI status](https://img.shields.io/github/actions/workflow/status/dimazuien/react-viewport-height/ci.yml?branch=main&label=ci)
 ![Code scanning](https://img.shields.io/github/actions/workflow/status/dimazuien/react-viewport-height/codeql-analysis.yml?branch=main)
 
-A utility for React to set 100vh equal to the actual browser inner window height.
+A React hook that returns the size of one `vh` unit, 1% of the browser's inner window height, and keeps it up to date when the window resizes.
 
-Since `vh` has troubles on mobile browsers (primarily because of the address bar), there are several tricks to fix it. This package implements the one from [this article](https://css-tricks.com/the-trick-to-viewport-units-on-mobile/).
+The package is maintained, but for new code, prefer the standard alternatives:
 
-_The solution for this was introduced in the [CSS Values and Units Module Level 4](https://www.w3.org/TR/css-values-4) which is [widely supported now](https://caniuse.com/viewport-unit-variants). Instead of using this package, you can use the `dvh` unit if your project doesn't need to support older browsers. [Read more about new units.](https://web.dev/viewport-units/)_
+- **To size elements**, use the CSS `dvh`, `svh`, and `lvh` units. They follow the actual viewport height on mobile browsers and are [widely supported](https://caniuse.com/viewport-unit-variants). [Read more about the new units.](https://web.dev/viewport-units/)
+- **To use the height in JavaScript**, use `useWindowSize` from [usehooks-ts](https://usehooks-ts.com/react-hook/use-window-size) or [react-use](https://github.com/streamich/react-use/blob/master/docs/useWindowSize.md). Both return the window's inner width and height, so `useWindowSize().height / 100` is the value that `useVH` returns.
 
 ## Usage
 
@@ -22,22 +23,24 @@ npm install react-viewport-height
 ```
 
 ```jsx
-// index.js
 import useVH from 'react-viewport-height';
-import './index.css';
 
-const App = () => {
-  useVH();
+const ROW_HEIGHT = 40;
 
-  return <div className='app' />;
+const Rows = ({ items }) => {
+  const vh = useVH();
+  const rowsThatFit = Math.floor((100 * vh) / ROW_HEIGHT);
+
+  return (
+    <ul>
+      {items.slice(0, rowsThatFit).map((item) => (
+        <li key={item} style={{ height: ROW_HEIGHT }}>
+          {item}
+        </li>
+      ))}
+    </ul>
+  );
 };
-```
-
-```css
-/* index.css */
-.app {
-  min-height: calc(var(--vh, 1vh) * 100);
-}
 ```
 
 Read [the documentation](https://github.com/dimazuien/react-viewport-height/blob/main/docs/index.md) for more details. You can also play with a [demo](https://codesandbox.io/s/react-viewport-height-90o4j).
