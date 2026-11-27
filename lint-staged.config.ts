@@ -1,4 +1,5 @@
 const config = {
+  '*': ['cspell lint --no-progress --no-must-find-files'],
   '*.{js,jsx,ts,tsx,cjs,mjs,cts,mts}': [
     'eslint --max-warnings=0 --fix',
     'prettier --write',
